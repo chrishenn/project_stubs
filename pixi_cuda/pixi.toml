@@ -1,0 +1,41 @@
+[workspace]
+channels = ["conda-forge", "https://conda.modular.com/max-nightly"]
+platforms = ["linux-64"]
+preview = ["pixi-build"]
+
+[dependencies]
+pixi_cuda = { path = "." }
+
+python = ">=3.13"
+pytorch-gpu = ">=2.8.0,<3"
+mojo = ">=25.5.0,<26"
+cuda = ">=12.9"
+ninja = ">=1.13.1"
+cmake = ">=4.1.1"
+gcc = ">=14.3.0,<14.4"
+clang = ">=21.1.1"
+nanobind = ">=2.9.2"
+pixi-build-python = ">=0.3.2,<0.4"
+
+[package]
+name = "pixi_cuda"
+version = "0.1.0"
+
+[package.build]
+backend = { name = "pixi-build-python", version = "*" }
+
+[package.host-dependencies]
+hatchling = "*"
+
+[package.run-dependencies]
+csrc = { path = "packages/csrc" }
+pytorch-gpu = ">=2.8.0,<3"
+
+[environments]
+default = { features = ["dev"], solve-group = "main" }
+
+[feature.dev.dependencies]
+pixi-pycharm = "*"
+
+[system-requirements]
+cuda = "12.9"

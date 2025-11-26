@@ -1,0 +1,15 @@
+__pycache__/
+*.py[oc]
+*.so
+build/
+dist/
+wheels/
+*.egg-info
+.venv/
+.idea/
+.vscode/
+.devbox/
+.xmake/
+
+
+/packages/pycu_xm/pycu_xm/libtorch/

@@ -1,0 +1,20 @@
+alias l := lint
+
+# python linters
+lintpy:
+    - uv format
+    - uv run ruff check --fix
+    - uv run ty check
+    # - uv run mypy
+
+# lint and format
+lint:
+    just lintpy
+    - just --fmt --unstable
+    - mise fmt
+    - prettier . --write
+
+# re-concretize+reinstall the spack env. After, you may need to reload the spack env with: `. spack_reload.sh`
+spack_build:
+    spack -e . concretize --fresh --force
+    spack -e . install

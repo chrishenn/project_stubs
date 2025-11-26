@@ -1,0 +1,18 @@
+module(name = "pycu_bzl2", version = "0.0.1")
+
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "platforms", version = "0.0.11")
+bazel_dep(name = "rules_python", version = "1.1.0")
+bazel_dep(name = "pybind11_bazel", version = "2.13.6")
+bazel_dep(name = "rules_cuda", version = "0.2.3")
+bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "nanobind_bazel", version = "2.4.0")
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
+    name = "libtorch",
+    strip_prefix = "libtorch",
+    sha256 = "f6e85271c8594f740705517f2315ef358cd0d9347d7c92e2da51dcb1850fc763",
+    urls = ["https://download.pytorch.org/libtorch/cu129/libtorch-shared-with-deps-2.8.0%2Bcu129.zip"],
+    build_file = "libtorch.bazel",
+)

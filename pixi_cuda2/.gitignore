@@ -1,0 +1,3 @@
+.pixi/*
+!.pixi/config.toml
+*.egg-info/

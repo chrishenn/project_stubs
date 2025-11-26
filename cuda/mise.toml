@@ -1,0 +1,23 @@
+[env]
+PROJECT = "{{ config_root }}"
+
+# block these out from my global mise config
+ninja = ""
+cmake = ""
+clang = ""
+
+[hooks.enter]
+shell = "bash"
+script = ". env.sh"
+
+[tasks.clean]
+run = 'rm -rf build'
+
+[tasks.build]
+run = '''
+cmake -G Ninja -S . -B build
+cmake --build build
+'''
+
+[tasks.cuda]
+run = './build/cuda'

@@ -1,0 +1,54 @@
+[project]
+name = "read_row"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+
+requires-python = ">=3.12"
+dependencies = [
+    "mypy>=1.14.0",
+    "numpy>=2.2.1",
+    "pyright>=1.1.391",
+    "pytest>=8.3.4",
+    "torch>=2.5.1",
+    "torchvision>=0.20.1",
+]
+
+[build-system]
+requires = ["scikit-build-core", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { file = "src/pycu_ref/*" }, { git = true }]
+
+
+
+[tool.scikit-build]
+cmake.source-dir = "src/pycu_ref/csrc"
+cmake.version = ">=3.30"
+cmake.args = []
+cmake.define = {}
+cmake.build-type = "Release"
+ninja.version = ">=1.12"
+ninja.make-fallback = false
+
+sdist.cmake = false
+sdist.include = ["src/pycu_ref"]
+sdist.exclude = ["build", "test", "__pycache__"]
+sdist.reproducible = true
+
+wheel.cmake = true
+wheel.packages = ["src/pycu_ref"]
+wheel.install-dir = "src/pycu_ref"
+
+editable.mode = "redirect"
+editable.verbose = true
+editable.rebuild = true
+build.verbose = true
+install.strip = true
+build-dir = "build"
+
+logging.level = "INFO"
+strict-config = true
+experimental = true
+

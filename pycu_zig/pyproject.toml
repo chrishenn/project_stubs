@@ -1,0 +1,7 @@
+[tool.uv.workspace]
+members = ["packages/*", "pycu_zig"]
+
+[tool.pytest.ini_options]
+testpaths = ["packages*"]
+python_files = ["*test*.py"]
+addopts = "-s --no-header --disable-warnings -p no:pydust"

@@ -1,0 +1,13 @@
+alias l := lint
+alias c := clean
+
+lint:
+    uv run ruff format
+    uv run ruff check --fix
+    just --fmt --unstable
+    uv run mypy
+    prettier . --write
+
+clean:
+    rm -rf packages/pycu_ref/build
+    rm -rf packages/pycu_ref/src/pycu_ref/build

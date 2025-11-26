@@ -1,0 +1,20 @@
+[workspace]
+authors = ["chrishenn <chenn@alum.mit.edu>"]
+channels = ["conda-forge"]
+name = "cuda"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[dependencies]
+# the cuda and cuda-toolkit conda packages ship cc, c++ and g++ into the env/bin dir
+# it looks like there's a race condition between cuda and clang. They're fighting over c++/g++/gcc etc
+# so you can install clang last, but then if you rebuild the shell all at once with pixi i or pixi s, it'll break
+
+# llvm is no problem though
+#llvm = ">=21.1.3,<22"
+#llvmdev = ">=21.1.3,<22"
+#llvm-tools = ">=21.1.3,<22"
+
+cuda = ">=13.0.2,<14"
+cmake = ">=4.0.2"
+ninja = ">=1.13.1,<2"

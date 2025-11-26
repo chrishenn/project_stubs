@@ -1,0 +1,16 @@
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.venv/
+.idea/
+*.so
+.devbox/
+/.spack-env/
+/.flox/
+node_modules/
+.pytest_cache/
+.mypy_cache
+.ruff_cache

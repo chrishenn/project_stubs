@@ -1,0 +1,58 @@
+{
+  sysincludedirs = {
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/include",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/include/torch/csrc/api/include"
+  },
+  libfiles = {
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libtorch.so",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libc10.so",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libc10_cuda.so",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libfbgemm.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libpytorch_qnnpack.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libprotobuf.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libonnx_proto.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libXNNPACK.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libpthreadpool.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libcpuinfo.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libfmt.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libmicrokernels-prod.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libkineto.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libdnnl.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libnnpack.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libprotoc.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libprotobuf-lite.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libsleef.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libasmjit.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libonnx.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libclog.a",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libtorch_cuda.so",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libcaffe2_nvrtc.so",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libtorch_cpu.so",
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libtorch_global_deps.so"
+  },
+  syslinks = "rt",
+  static = true,
+  linkdirs = {
+    "/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib"
+  },
+  shared = true,
+  links = {
+    "torch",
+    "c10",
+    "c10_cuda"
+  },
+  license = "BSD-3-Clause",
+  ldflags = {
+    "-Wl,-rpath,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib",
+    "-Wl,-rpath,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libtorch.so",
+    "-Wl,-rpath,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libkineto.so",
+    "-Wl,-rpath,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libc10.so",
+    "-Wl,-rpath,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libc10_cuda.so",
+    "-Wl,--no-as-needed,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libtorch.so",
+    "-Wl,--no-as-needed,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libtorch_cpu.so",
+    "-Wl,--no-as-needed,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libtorch_cuda.so",
+    "-Wl,--as-needed,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libc10.so",
+    "-Wl,--as-needed,/home/chris/.xmake/packages/l/libtorch/v2.6.0/d48b4a7336da4314be077f23aa58b12d/lib/libc10_cuda.so"
+  },
+  version = "v2.6.0"
+}

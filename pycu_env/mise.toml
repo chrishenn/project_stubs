@@ -1,0 +1,20 @@
+[tools]
+clang = "latest"
+cmake = "latest"
+just = "latest"
+ninja = "latest"
+prettier = "next"
+
+[hooks.enter]
+shell = "bash"
+script = """
+    uv venv --allow-existing \
+    && source .venv/bin/activate \
+    && source ~/spack/share/spack/setup-env.sh \
+    && spack env activate . -p \
+    && uv sync
+    """
+
+[env]
+# `uv format` is in preview and will throw a warning unless this is set
+UV_PREVIEW = 1

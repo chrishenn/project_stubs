@@ -1,0 +1,23 @@
+[project]
+name = "pymypyc"
+version = "0.0.1"
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[build-system]
+requires = ["hatchling", "hatch-mypyc"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel.hooks.mypyc]
+dependencies = ["hatch-mypyc"]
+
+[tool.hatch.build.targets.bdist.hooks.mypyc]
+dependencies = ["hatch-mypyc"]
+
+[dependency-groups]
+dev = [
+    "mypy[mypyc]>=1.14.1",
+    "pytest>=8.3.4",
+]

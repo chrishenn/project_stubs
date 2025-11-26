@@ -1,0 +1,14 @@
+[package]
+name = "pixi_cuda"
+version = "0.1.0"
+
+[package.build]
+backend = { name = "pixi-build-python", version = "*" }
+
+[package.host-dependencies]
+uv = "<=0.8.22"
+
+[package.run-dependencies]
+pixi_cuda_c = { path = "../pixi_cuda_c" }
+python = ">=3.13"
+pytorch-gpu = ">=2.8.0,<3"

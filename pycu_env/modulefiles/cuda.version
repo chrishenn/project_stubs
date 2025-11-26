@@ -1,0 +1,4 @@
+#%Module
+## cuda module: set default version
+
+set ModulesVersion 12.6

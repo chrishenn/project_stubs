@@ -1,0 +1,16 @@
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["packages*"]
+python_files = ["*test*.py"]
+addopts = "-s --no-header --disable-warnings"
+
+[tool.mypy]
+files = ["packages/**/*.py"]
+exclude = ["deprecated"]
+no_site_packages = true
+exclude_gitignore = true
+ignore_missing_imports = true
+check_untyped_defs = true
+local_partial_types = true

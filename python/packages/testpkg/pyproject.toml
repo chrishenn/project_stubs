@@ -1,0 +1,42 @@
+[project]
+name = "testpkg"
+version = "0.0.1"
+description = ""
+readme = "readme.md"
+requires-python = ">=3.13.7"
+dependencies = [
+    "torch>=2.8.0",
+    "torchvision>=0.23.0",
+]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu129", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+torchvision = [
+  { index = "pytorch-cu129", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu129"
+url = "https://download.pytorch.org/whl/cu129"
+explicit = true
+
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.17.1",
+    "pytest>=8.4.2",
+    "ruff>=0.12.12",
+    "ty>=0.0.1a21",
+]
+
+[tool.mypy]
+packages = ["testpkg"]
+exclude = ["deprecated"]
+ignore_missing_imports = true
+check_untyped_defs = true
+local_partial_types = true

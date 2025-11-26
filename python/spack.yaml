@@ -1,0 +1,12 @@
+spack:
+  specs:
+    # spack has a cudnn package, but we're using a manual install for cuda13 so that won't work right now
+    - cuda@13.0
+    - gcc@15
+  view: true
+  concretizer:
+    unify: true
+  modules:
+    prefix_inspections:
+      lib: [LD_LIBRARY_PATH]
+      lib64: [LD_LIBRARY_PATH]

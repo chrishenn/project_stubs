@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
+  "packages": [
+    "cudaPackages.cudatoolkit@latest",
+    "cudaPackages.libcusparse@latest",
+    "cudaPackages.cuda_cudart@latest",
+    "cudaPackages.nccl@latest",
+    "python312@latest",
+    "python312Packages.torch@latest",
+    "python312Packages.typing-extensions@latest",
+    "python312Packages.numpy@latest",
+    "cmake@latest",
+    "clang@latest",
+    "ninja@latest",
+    "cudaPackages.libcublas@latest",
+    "cudaPackages.cuda_cupti@latest",
+    "cudaPackages.cuda_nvrtc@latest",
+    "cudaPackages.cudnn@latest",
+    "cudaPackages.libcufft@latest",
+    "cudaPackages.libcurand@latest",
+    "cudaPackages.libcusolver@latest",
+    "cudaPackages.libnvjitlink@latest",
+    "cudaPackages.cuda_nvtx@latest",
+    "python312Packages.torchvision@latest",
+    "python312Packages.uv@latest",
+    "stdenv.cc.cc.lib"
+  ],
+  "env": {
+    "VENV_DIR": ".venv"
+  },
+  "shell": {
+    "init_hook": ". $VENV_DIR/bin/activate && export LD_LIBRARY_PATH=./.devbox/nix/profile/default/lib",
+
+    "scripts": {
+      "test": ["echo 'test done'"]
+    }
+  }
+}

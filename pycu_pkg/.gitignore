@@ -1,0 +1,12 @@
+.idea/
+.vscode/
+build/
+dist/
+*.egg-info/
+__pycache__/
+*~*
+data/
+*.pth
+checkpoints/
+*.so
+

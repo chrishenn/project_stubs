@@ -1,0 +1,68 @@
+recipe:
+  name: pixi_cuda_recipe
+  version: "0.1.0"
+
+source:
+  path: .
+  use_gitignore: true
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: csrc
+    build:
+      script: |
+        cmake $CMAKE_ARGS \
+          -S . \
+          -B build \
+          -G Ninja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=$PREFIX \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+          -DBUILD_SHARED_LIBS=ON \
+          -DTORCH_CUDA_ARCH_LIST='8.6'
+        cmake --build build --target install
+    requirements:
+      build:
+        - gcc >= 14.3
+        - cmake >= 4.1.1
+        - ninja >= 1.13.1
+      host:
+        - python
+        - pytorch-gpu >=2.8.0,<3
+        - nanobind
+        - cuda >=12.9
+      run:
+        - python
+        - pytorch-gpu >=2.8.0,<3
+      ignore_run_exports:
+        by_name: python
+
+  - package:
+      name: pixi_cuda
+    build:
+      script: |
+        uv pip install --python ${PYTHON} --no-deps --no-build-isolation --editable .
+    #        ${PYTHON} -m pip install --ignore-installed --no-deps --no-build-isolation --editable .
+    requirements:
+      host:
+        - python
+        - uv
+        #        - hatchling
+        #        - pip
+        - ${{ pin_subpackage('csrc', exact=True) }}
+      run:
+        - python
+        - pytorch-gpu >=2.8.0,<3
+#        - ${{ pin_subpackage('csrc', exact=True) }}
+
+about:
+  homepage:
+  license: MIT
+  license_file:
+  summary: pixi_cuda
+  description: |
+    pixi_cuda
+  documentation:

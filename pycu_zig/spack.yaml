@@ -1,0 +1,9 @@
+spack:
+  specs:
+    - cuda@12.6
+    - gcc@13
+    - cmake
+    - ninja
+  view: true
+  concretizer:
+    unify: true

@@ -1,0 +1,920 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "cmake@latest": {
+      "last_modified": "2024-12-23T21:10:33Z",
+      "resolved": "github:NixOS/nixpkgs/de1864217bfa9b5845f465e771e0ecb48b30e02d#cmake",
+      "source": "devbox-search",
+      "version": "3.30.5",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/x8qyfphi04lhj621if89f8il33v9dnny-cmake-3.30.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/x8qyfphi04lhj621if89f8il33v9dnny-cmake-3.30.5"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/cgw86xcgai718dlql36z7jvp1pwq610c-cmake-3.30.5",
+              "default": true
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/bihfh3k64l5hd8v08052q0h6skzdn76y-cmake-3.30.5-debug"
+            }
+          ],
+          "store_path": "/nix/store/cgw86xcgai718dlql36z7jvp1pwq610c-cmake-3.30.5"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6fxjmcjgfz338702p9ps26r0s1bakqbk-cmake-3.30.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6fxjmcjgfz338702p9ps26r0s1bakqbk-cmake-3.30.5"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/38cffsqqx823crf1i4bcf6zz1qz1hgpd-cmake-3.30.5",
+              "default": true
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/h0ldr2hbqcb37hdkmh8cdyljrqwrc1ms-cmake-3.30.5-debug"
+            }
+          ],
+          "store_path": "/nix/store/38cffsqqx823crf1i4bcf6zz1qz1hgpd-cmake-3.30.5"
+        }
+      }
+    },
+    "cudaPackages.cuda_cudart@latest": {
+      "last_modified": "2025-01-07T09:15:50Z",
+      "resolved": "github:NixOS/nixpkgs/8c9fd3e564728e90829ee7dbac6edc972971cd0f#cudaPackages.cuda_cudart",
+      "source": "devbox-search",
+      "version": "12.4.99",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mlx4r38dvql03n5hb6syxki5v2yx3x32-cuda_cudart-12.4.99",
+              "default": true
+            },
+            {
+              "name": "stubs",
+              "path": "/nix/store/1zpl6j8l86d18xmkc769bir09w5giigq-cuda_cudart-12.4.99-stubs"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/5h11cvsxa9sq4sdmk5534zkgcn9la4x4-cuda_cudart-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/410imlm474fscpqcccv6axj3jpcgc0jm-cuda_cudart-12.4.99-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/fb436jvi53vjf9g7gxcvxn4n4ph7r0w4-cuda_cudart-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/mlx4r38dvql03n5hb6syxki5v2yx3x32-cuda_cudart-12.4.99"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2l3lv7yha1gqvdyig02cpr0mh13cc7sb-cuda_cudart-12.4.99",
+              "default": true
+            },
+            {
+              "name": "stubs",
+              "path": "/nix/store/jfqnnkpwl2cc5ms09zj1iav1qyg9mdki-cuda_cudart-12.4.99-stubs"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/pjwsmd212zhpriymn116xfl95zqxcwz5-cuda_cudart-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/b5arfaz3xqrspi891903m9p66q4vhl5p-cuda_cudart-12.4.99-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/3lilc98dgqx2gxcyaqsj5annchnkhjmk-cuda_cudart-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/2l3lv7yha1gqvdyig02cpr0mh13cc7sb-cuda_cudart-12.4.99"
+        }
+      }
+    },
+    "cudaPackages.cuda_cupti@latest": {
+      "last_modified": "2025-01-07T09:15:50Z",
+      "resolved": "github:NixOS/nixpkgs/8c9fd3e564728e90829ee7dbac6edc972971cd0f#cudaPackages.cuda_cupti",
+      "source": "devbox-search",
+      "version": "12.4.99",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/1zxm0jqcydyd2d9s5fb98788kldbvmph-cuda_cupti-12.4.99",
+              "default": true
+            },
+            {
+              "name": "sample",
+              "path": "/nix/store/1ksdq71a54ixxz92zajrr5sl64cjsbq3-cuda_cupti-12.4.99-sample"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/5lp0gmc3lz21ja837gnaqc820kgrg3ww-cuda_cupti-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/416kzd53qxnlnapmihp0aca4y59jmwkj-cuda_cupti-12.4.99-lib"
+            }
+          ],
+          "store_path": "/nix/store/1zxm0jqcydyd2d9s5fb98788kldbvmph-cuda_cupti-12.4.99"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/bpx58l4pg85xdm61hrrpksjc47hgxwwh-cuda_cupti-12.4.99",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/s4lw1mvlymym65kfnzx7j2mgrpkqr01a-cuda_cupti-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/wjisw4mlszyv21vfq4x06fh06n7wa3zv-cuda_cupti-12.4.99-lib"
+            },
+            {
+              "name": "sample",
+              "path": "/nix/store/g1ldx8nz1r4xgbh76rii8c9pllrk01m8-cuda_cupti-12.4.99-sample"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/5nzss23w9kx77wdw6591ad6z0bmzsvhr-cuda_cupti-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/bpx58l4pg85xdm61hrrpksjc47hgxwwh-cuda_cupti-12.4.99"
+        }
+      }
+    },
+    "cudaPackages.cuda_nvcc@latest": {
+      "last_modified": "2024-12-23T21:10:33Z",
+      "resolved": "github:NixOS/nixpkgs/de1864217bfa9b5845f465e771e0ecb48b30e02d#cudaPackages.cuda_nvcc",
+      "source": "devbox-search",
+      "version": "12.4.99",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/wjx7wzbw38d6l9v668mfafh9667f1476-cuda_nvcc-12.4.99",
+              "default": true
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/7mfjcshy2xxj9zhmal7b9ix81q4l4yp8-cuda_nvcc-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/wjx7wzbw38d6l9v668mfafh9667f1476-cuda_nvcc-12.4.99"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vnwm837kbwv0ckf1xbjs6zx9vddcjz8d-cuda_nvcc-12.4.99",
+              "default": true
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/kmracnhr47bbniwvqshnzyms61c1nkad-cuda_nvcc-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/vnwm837kbwv0ckf1xbjs6zx9vddcjz8d-cuda_nvcc-12.4.99"
+        }
+      }
+    },
+    "cudaPackages.cuda_nvrtc@latest": {
+      "last_modified": "2025-01-06T03:40:18Z",
+      "resolved": "github:NixOS/nixpkgs/3df3c47c19dc90fec35359e89ffb52b34d2b0e94#cudaPackages.cuda_nvrtc",
+      "source": "devbox-search",
+      "version": "12.4.99",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/d6xx2lzbm7c4hnsjv63zfpbpb2dx7b97-cuda_nvrtc-12.4.99",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/2km6rpf4g2j2fyyj1g6bvj8gmfdn48xg-cuda_nvrtc-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/a9bzwxniyjqns7f69k8s8llblvj0r04h-cuda_nvrtc-12.4.99-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/w8c0svxv31cc22cnhi3alsahg09bc8yw-cuda_nvrtc-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/d6xx2lzbm7c4hnsjv63zfpbpb2dx7b97-cuda_nvrtc-12.4.99"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/b5fymg5z5hpwr30zgib9bi41l7v09zg6-cuda_nvrtc-12.4.99",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/lgim1p5h51c03sad5q6mif31sgdlh4ij-cuda_nvrtc-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/dv3zam48zq37cbs8yyd6a3ap9n04lzml-cuda_nvrtc-12.4.99-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/89fzj7ydh4ch0ppx9bbmwlgbdlr2gnsr-cuda_nvrtc-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/b5fymg5z5hpwr30zgib9bi41l7v09zg6-cuda_nvrtc-12.4.99"
+        }
+      }
+    },
+    "cudaPackages.cuda_nvtx@latest": {
+      "last_modified": "2025-01-07T09:15:50Z",
+      "resolved": "github:NixOS/nixpkgs/8c9fd3e564728e90829ee7dbac6edc972971cd0f#cudaPackages.cuda_nvtx",
+      "source": "devbox-search",
+      "version": "12.4.99",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/grq95m5lw58dd5h9a1d341z521irqr9q-cuda_nvtx-12.4.99",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/kyq88wq0p9in29igb0jyyrvxkbqy5wpd-cuda_nvtx-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/azyybl3wiixjqxxx7y277pmgd09s69wd-cuda_nvtx-12.4.99-lib"
+            }
+          ],
+          "store_path": "/nix/store/grq95m5lw58dd5h9a1d341z521irqr9q-cuda_nvtx-12.4.99"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vjx7j0r3vx0i1zvxakmbfk7qkpd1hxdx-cuda_nvtx-12.4.99",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/c1dgpvims728qwaaidfq508l7ybd4w0f-cuda_nvtx-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/i5zahmn4i7l2ipnrjp14r9qsfjs95lxl-cuda_nvtx-12.4.99-lib"
+            }
+          ],
+          "store_path": "/nix/store/vjx7j0r3vx0i1zvxakmbfk7qkpd1hxdx-cuda_nvtx-12.4.99"
+        }
+      }
+    },
+    "cudaPackages.cudatoolkit@12.4": {
+      "last_modified": "2024-12-23T21:10:33Z",
+      "resolved": "github:NixOS/nixpkgs/de1864217bfa9b5845f465e771e0ecb48b30e02d#cudaPackages.cudatoolkit",
+      "source": "devbox-search",
+      "version": "12.4",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/0lv5b7grm7wf24my9x11ygxgys8y66bg-cuda-merged-12.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/0lv5b7grm7wf24my9x11ygxgys8y66bg-cuda-merged-12.4"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/sxcbv7hiy9h8d2xr64ixbryi5qa7ngsb-cuda-merged-12.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/sxcbv7hiy9h8d2xr64ixbryi5qa7ngsb-cuda-merged-12.4"
+        }
+      }
+    },
+    "cudaPackages.cudnn@latest": {
+      "last_modified": "2025-01-05T01:56:15Z",
+      "resolved": "github:NixOS/nixpkgs/bf689c40d035239a489de5997a4da5352434632e#cudaPackages.cudnn",
+      "source": "devbox-search",
+      "version": "9.3.0.75",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5gi0dm7rj8pglnql254k0dpyhw3mrinz-cudnn-9.3.0.75",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/k5ac480j1xrrpaapw29bbz024qjapdyk-cudnn-9.3.0.75-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/l72r4i3x1p0q9z9rc57nbk51zmsigvdy-cudnn-9.3.0.75-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/dbcbx3byvqg1w2dhldjagpcb7508fgkd-cudnn-9.3.0.75-static"
+            }
+          ],
+          "store_path": "/nix/store/5gi0dm7rj8pglnql254k0dpyhw3mrinz-cudnn-9.3.0.75"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6ghyplw7lb7bkmpcwb9yncj2chmd8fgk-cudnn-9.3.0.75",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/d658f55knhs28kxz7dnhwh0hkawi2dl5-cudnn-9.3.0.75-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/f92ffcn9nr2c2b1ddfcz8hzcy57gi91f-cudnn-9.3.0.75-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/7yf868bm1cjb6prgjb2rwvgp35wd84fg-cudnn-9.3.0.75-static"
+            }
+          ],
+          "store_path": "/nix/store/6ghyplw7lb7bkmpcwb9yncj2chmd8fgk-cudnn-9.3.0.75"
+        }
+      }
+    },
+    "cudaPackages.libcublas@latest": {
+      "last_modified": "2025-01-07T09:15:50Z",
+      "resolved": "github:NixOS/nixpkgs/8c9fd3e564728e90829ee7dbac6edc972971cd0f#cudaPackages.libcublas",
+      "source": "devbox-search",
+      "version": "12.4.2.65",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/j8biggw11c1nqmj3xkgv3chbyqznp6rz-libcublas-12.4.2.65",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/yi8kchv7hmqw95vlprf77fzzfd729l4w-libcublas-12.4.2.65-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/yccbrqi479zx5ac40n5k2x3g5l6q6k9p-libcublas-12.4.2.65-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/gj1sln30s97nir7pxwiqivdbyngswc7l-libcublas-12.4.2.65-static"
+            }
+          ],
+          "store_path": "/nix/store/j8biggw11c1nqmj3xkgv3chbyqznp6rz-libcublas-12.4.2.65"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/m90sfd87wjm8gvzlpigizvxzc3x2kvhq-libcublas-12.4.2.65",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/r9y5y20z6f19jc66vj1cjlyscp36qsw6-libcublas-12.4.2.65-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/5x4cw7hfnky0cb4jhkrzv4gk25m82dg4-libcublas-12.4.2.65-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/3qn19pfndn6xw04jcd5sld91g2f11dvs-libcublas-12.4.2.65-static"
+            }
+          ],
+          "store_path": "/nix/store/m90sfd87wjm8gvzlpigizvxzc3x2kvhq-libcublas-12.4.2.65"
+        }
+      }
+    },
+    "cudaPackages.libcufft@latest": {
+      "last_modified": "2024-12-28T15:08:12Z",
+      "resolved": "github:NixOS/nixpkgs/f56cbb9a85e5f5a6d41f25cfc0286fc8eba54a2a#cudaPackages.libcufft",
+      "source": "devbox-search",
+      "version": "11.2.0.44",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/kzvds39993s72vm8clf0pfm8fy2zi3d0-libcufft-11.2.0.44",
+              "default": true
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/dg9x9mm51rzp0jfahswaj72nkx1vgic4-libcufft-11.2.0.44-static"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/0v8yi7fvj2rxw2cphcjir35n9yabdwg3-libcufft-11.2.0.44-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/kyv4pwiajbyvrabrdnm8f578xgvz5ckh-libcufft-11.2.0.44-lib"
+            }
+          ],
+          "store_path": "/nix/store/kzvds39993s72vm8clf0pfm8fy2zi3d0-libcufft-11.2.0.44"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rncgdfmhjcbgl6gsp03j78n2gci47wx2-libcufft-11.2.0.44",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/p63j5wc45dn3fiyacyngfw7gx0x03rnb-libcufft-11.2.0.44-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/vq710w6rfxz54pz5s7bfc3ql6qfjm26q-libcufft-11.2.0.44-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/x7izp0kcvi8fc61incqhz8v36p3fvg7r-libcufft-11.2.0.44-static"
+            }
+          ],
+          "store_path": "/nix/store/rncgdfmhjcbgl6gsp03j78n2gci47wx2-libcufft-11.2.0.44"
+        }
+      }
+    },
+    "cudaPackages.libcurand@latest": {
+      "last_modified": "2025-01-07T09:15:50Z",
+      "resolved": "github:NixOS/nixpkgs/8c9fd3e564728e90829ee7dbac6edc972971cd0f#cudaPackages.libcurand",
+      "source": "devbox-search",
+      "version": "10.3.5.119",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5s1rkrda96akys2p7ksbsdbilb7qh0w4-libcurand-10.3.5.119",
+              "default": true
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/mwmmiw2ir5xc25h6yxkc25s7l0a8i5cj-libcurand-10.3.5.119-static"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/r3as133yd755yb4sibm95nlxy9qdm0pf-libcurand-10.3.5.119-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/79qry47rvsj62jhvs77w4iby16p2wbv9-libcurand-10.3.5.119-lib"
+            }
+          ],
+          "store_path": "/nix/store/5s1rkrda96akys2p7ksbsdbilb7qh0w4-libcurand-10.3.5.119"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/iycz92hk844sddldy9aw80cd9mjpin64-libcurand-10.3.5.119",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/3ff9ja17xhg2aax8k21miw2ff4alxhr8-libcurand-10.3.5.119-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/pgrkcqwdxaxllzmvrw2l2hlrna4924m6-libcurand-10.3.5.119-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/c53dpj53yqds7z4xj1ay2fqfs9shzaks-libcurand-10.3.5.119-static"
+            }
+          ],
+          "store_path": "/nix/store/iycz92hk844sddldy9aw80cd9mjpin64-libcurand-10.3.5.119"
+        }
+      }
+    },
+    "cudaPackages.libcusolver@latest": {
+      "last_modified": "2025-01-07T09:15:50Z",
+      "resolved": "github:NixOS/nixpkgs/8c9fd3e564728e90829ee7dbac6edc972971cd0f#cudaPackages.libcusolver",
+      "source": "devbox-search",
+      "version": "11.6.0.99",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fjk7v43g4k3skpz6l9rfn6w9yr9j9qkg-libcusolver-11.6.0.99",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/2zsc4z4drnm54h65n89w0244k8d1rnx1-libcusolver-11.6.0.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/52d6gc5yrqi4fv9j2f8ndpyk44ixzr37-libcusolver-11.6.0.99-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/3917l20ayvx7lsl5l6prh3m00wlhcgsk-libcusolver-11.6.0.99-static"
+            }
+          ],
+          "store_path": "/nix/store/fjk7v43g4k3skpz6l9rfn6w9yr9j9qkg-libcusolver-11.6.0.99"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/zl9nl21znf1c2cvgirbk8qj62kjyvhnh-libcusolver-11.6.0.99",
+              "default": true
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/dicvpqvfw4fj9vw8sbfr2bg51r47qfc2-libcusolver-11.6.0.99-static"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/hwnxggwbl45a5j1gr33254rabpiqa8hd-libcusolver-11.6.0.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/6jxjy2w3mca7m1nfcfhy1dbkmmpvc35s-libcusolver-11.6.0.99-lib"
+            }
+          ],
+          "store_path": "/nix/store/zl9nl21znf1c2cvgirbk8qj62kjyvhnh-libcusolver-11.6.0.99"
+        }
+      }
+    },
+    "cudaPackages.libcusparse@latest": {
+      "last_modified": "2025-01-05T01:56:15Z",
+      "resolved": "github:NixOS/nixpkgs/bf689c40d035239a489de5997a4da5352434632e#cudaPackages.libcusparse",
+      "source": "devbox-search",
+      "version": "12.3.0.142",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lv0hqhvmhxn59hsmkqc4wg4y63cfw1y5-libcusparse-12.3.0.142",
+              "default": true
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/c0qj6yscjdwn80b8r1qh9hxkgpwlvpmp-libcusparse-12.3.0.142-static"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/b9y208r92iaqq52ckcq079a1sdmwnimf-libcusparse-12.3.0.142-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/6v8hy8nzsizyr5dhnhw6qxairajsmbl8-libcusparse-12.3.0.142-lib"
+            }
+          ],
+          "store_path": "/nix/store/lv0hqhvmhxn59hsmkqc4wg4y63cfw1y5-libcusparse-12.3.0.142"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xzzji5x0mymy8v6mmlka3ypyl0ssp7k0-libcusparse-12.3.0.142",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/vir0dsv2ddd54zvxs2smxhz5f5wblpsb-libcusparse-12.3.0.142-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/1n67jvc8iji7asdx35z0flf4appnnjb7-libcusparse-12.3.0.142-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/j70051hpm4jmzndwhyypi27lk8k7nvzf-libcusparse-12.3.0.142-static"
+            }
+          ],
+          "store_path": "/nix/store/xzzji5x0mymy8v6mmlka3ypyl0ssp7k0-libcusparse-12.3.0.142"
+        }
+      }
+    },
+    "cudaPackages.libnvjitlink@latest": {
+      "last_modified": "2025-01-07T09:15:50Z",
+      "resolved": "github:NixOS/nixpkgs/8c9fd3e564728e90829ee7dbac6edc972971cd0f#cudaPackages.libnvjitlink",
+      "source": "devbox-search",
+      "version": "12.4.99",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/cnypykgpridl4lpmhajm9c8m43zmcj2d-libnvjitlink-12.4.99",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/7kk9b9l2g36wkqfl38kgjya0n0y3gvpg-libnvjitlink-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/y8d9mz0jyqfqvfv46dnn3v0s2pnrb3ls-libnvjitlink-12.4.99-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/sma3s97hlv8cdba0s31spkjwac59r29n-libnvjitlink-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/cnypykgpridl4lpmhajm9c8m43zmcj2d-libnvjitlink-12.4.99"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/scrri6c7x0iadj7pg2wg85gmrrlidljy-libnvjitlink-12.4.99",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/d6sj5r481342kbd7dwkl12krj0vyccqp-libnvjitlink-12.4.99-dev"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/rhiy3gk1zsnv2la6g8absfqjfk9pl4b1-libnvjitlink-12.4.99-lib"
+            },
+            {
+              "name": "static",
+              "path": "/nix/store/mqahhg2xkp8gzylyz4adzd8gys3l0b0z-libnvjitlink-12.4.99-static"
+            }
+          ],
+          "store_path": "/nix/store/scrri6c7x0iadj7pg2wg85gmrrlidljy-libnvjitlink-12.4.99"
+        }
+      }
+    },
+    "cudaPackages.nccl@latest": {
+      "last_modified": "2024-12-23T21:10:33Z",
+      "resolved": "github:NixOS/nixpkgs/de1864217bfa9b5845f465e771e0ecb48b30e02d#cudaPackages.nccl",
+      "source": "devbox-search",
+      "version": "2.21.5-1",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/l5g8ihzg4zkg96cpxscswv7s1zhrx6gx-nccl-2.21.5-1",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/klzi5x35gbp4h1xdw1lwhl76nqmv1cx3-nccl-2.21.5-1-dev"
+            }
+          ],
+          "store_path": "/nix/store/l5g8ihzg4zkg96cpxscswv7s1zhrx6gx-nccl-2.21.5-1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/r5ys29vafn432kxnfw7naa2qzd7agvwl-nccl-2.21.5-1",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/rvq9yn22p31gjrrpibhr0bfyvrc5324a-nccl-2.21.5-1-dev"
+            }
+          ],
+          "store_path": "/nix/store/r5ys29vafn432kxnfw7naa2qzd7agvwl-nccl-2.21.5-1"
+        }
+      }
+    },
+    "gcc@13": {
+      "last_modified": "2024-12-03T12:40:06Z",
+      "resolved": "github:NixOS/nixpkgs/566e53c2ad750c84f6d31f9ccb9d00f823165550#gcc",
+      "source": "devbox-search",
+      "version": "13.3.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/3hq83bgy41m9xpifm3hknjf96v75sg33-gcc-wrapper-13.3.0",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/ncrvhf5cml7cpi34ah1fvpablyk9j3jf-gcc-wrapper-13.3.0-man",
+              "default": true
+            },
+            {
+              "name": "info",
+              "path": "/nix/store/95lwddr3xhz110pyjkg9i7zczbi32bjb-gcc-wrapper-13.3.0-info"
+            }
+          ],
+          "store_path": "/nix/store/3hq83bgy41m9xpifm3hknjf96v75sg33-gcc-wrapper-13.3.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ay4xxbjafns12mn2ilhz4y7d3m3ziwqg-gcc-wrapper-13.3.0",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/5y6fmjxpv2xc7zhvn02w4ikg1n1rgm0d-gcc-wrapper-13.3.0-man",
+              "default": true
+            },
+            {
+              "name": "info",
+              "path": "/nix/store/b0b2h9n97bpwrdxnazh70nlv0knlpd7s-gcc-wrapper-13.3.0-info"
+            }
+          ],
+          "store_path": "/nix/store/ay4xxbjafns12mn2ilhz4y7d3m3ziwqg-gcc-wrapper-13.3.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hjrymxy8p9fkcqzdi4qd6qcvy9fdkcn1-gcc-wrapper-13.3.0",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/156gcfrrmschaslcc4vbblmg86wcv1wb-gcc-wrapper-13.3.0-man",
+              "default": true
+            },
+            {
+              "name": "info",
+              "path": "/nix/store/9msszmhia74i4x5bcz8w5pnqnyj0r563-gcc-wrapper-13.3.0-info"
+            }
+          ],
+          "store_path": "/nix/store/hjrymxy8p9fkcqzdi4qd6qcvy9fdkcn1-gcc-wrapper-13.3.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4apajimszc47rxwcpvc3g3rj2icinl71-gcc-wrapper-13.3.0",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/g6dl0niwffyhk1l59r4zxv94fklx7ijg-gcc-wrapper-13.3.0-man",
+              "default": true
+            },
+            {
+              "name": "info",
+              "path": "/nix/store/nhjmrmkzyqsff9maxrl0pskqbizpqikz-gcc-wrapper-13.3.0-info"
+            }
+          ],
+          "store_path": "/nix/store/4apajimszc47rxwcpvc3g3rj2icinl71-gcc-wrapper-13.3.0"
+        }
+      }
+    },
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "resolved": "github:NixOS/nixpkgs/02032da4af073d0f6110540c8677f16d4be0117f?lastModified=1741037377&narHash=sha256-SvtvVKHaUX4Owb%2BPasySwZsoc5VUeTf1px34BByiOxw%3D"
+    },
+    "ninja@latest": {
+      "last_modified": "2024-12-23T21:10:33Z",
+      "resolved": "github:NixOS/nixpkgs/de1864217bfa9b5845f465e771e0ecb48b30e02d#ninja",
+      "source": "devbox-search",
+      "version": "1.12.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/d6kiwip8cgqqzjpp6hbsmkqkr6jrqyd9-ninja-1.12.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/d6kiwip8cgqqzjpp6hbsmkqkr6jrqyd9-ninja-1.12.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4142cy0xm16s1ldqx7qq2w69rca36y0c-ninja-1.12.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/4142cy0xm16s1ldqx7qq2w69rca36y0c-ninja-1.12.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/w8ngrsfh2zimq4a16rgrrm23skcss5v4-ninja-1.12.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/w8ngrsfh2zimq4a16rgrrm23skcss5v4-ninja-1.12.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/byvgvqlh007flwk940c99zfgzrjg0zsg-ninja-1.12.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/byvgvqlh007flwk940c99zfgzrjg0zsg-ninja-1.12.1"
+        }
+      }
+    },
+    "uv@latest": {
+      "last_modified": "2025-01-03T14:51:55Z",
+      "resolved": "github:NixOS/nixpkgs/a27871180d30ebee8aa6b11bf7fef8a52f024733#uv",
+      "source": "devbox-search",
+      "version": "0.5.14",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/np8wg666r6053jzzfljiymn64h1skypw-uv-0.5.14",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/np8wg666r6053jzzfljiymn64h1skypw-uv-0.5.14"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7fznpx28grcn75r0hrg42ym0fk59s3n0-uv-0.5.14",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/7fznpx28grcn75r0hrg42ym0fk59s3n0-uv-0.5.14"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fiy4i9lnc78mpx3jbfhbmqygmknp49gh-uv-0.5.14",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/fiy4i9lnc78mpx3jbfhbmqygmknp49gh-uv-0.5.14"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ysljjdf70xcss901kq1zzr99qcw4g1k4-uv-0.5.14",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ysljjdf70xcss901kq1zzr99qcw4g1k4-uv-0.5.14"
+        }
+      }
+    }
+  }
+}

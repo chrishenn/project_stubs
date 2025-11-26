@@ -1,0 +1,4 @@
+.idea/
+.venv/
+bazel-cache/
+node_modules/

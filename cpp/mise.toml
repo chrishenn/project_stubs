@@ -1,0 +1,20 @@
+[env]
+PROJECT = "{{ config_root }}"
+
+# block these out from my global mise config
+ninja = ""
+cmake = ""
+clang = ""
+
+[hooks.enter]
+shell = "bash"
+script = ". env.sh"
+
+[tasks.build]
+run = '''
+cmake -G Ninja -S . -B build
+cmake --build build
+'''
+
+[tasks.cpptest]
+run = './build/cpptest'

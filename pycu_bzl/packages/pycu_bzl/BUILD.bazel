@@ -1,0 +1,94 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("@nanobind_bazel//:build_defs.bzl", "nanobind_extension")
+load("@rules_cuda//cuda:defs.bzl", "requires_cuda", "cuda_library")
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "CU_SRC",
+    srcs = glob(["src/pycu_bzl/csrc/*.cu"])
+)
+filegroup(
+    name = "CPP_SRC",
+    srcs = glob(["src/pycu_bzl/csrc/*.cpp"])
+)
+cuda_library(
+    name = "kernel",
+    srcs = [":CU_SRC"],
+    deps = [
+        "@libtorch//:libtorch",
+    ],
+    host_copts = [],
+    host_linkopts = [],
+    copts = [
+#        "-fPIC" # nvcc fatal: unknown
+        "-std=c++17",
+        "-D_GLIBCXX_USE_CXX11_ABI=0", # necessary, else python will throw `undefined symbol` on import
+    ],
+    linkopts = [
+        "-fPIC",
+#        "-static",
+    ],
+
+    alwayslink = 1, # necessary, else gpu code will be unfindable in the python .so
+#    linkopts = [
+#        "-lstdc++fs",
+#        "-no-pie"
+#    ],
+    rdc = True,
+    target_compatible_with = requires_cuda(),
+    features = ["fully_static_link"],
+)
+
+
+nanobind_extension(
+    name = "_C",
+    srcs = [
+        ":CPP_SRC",
+        ":kernel",
+    ],
+    deps = [
+        "@libtorch//:libtorch",
+        "@rules_python//python/cc:current_py_cc_libs",
+    ],
+    copts = [
+        "-fPIC",
+        "-D_GLIBCXX_USE_CXX11_ABI=0",
+    ],
+    cxxopts = [
+        "-fPIC",
+    ],
+    linkopts = [
+        "-fPIC",
+    ],
+
+#    linkopts = [
+#        "-no-pie",
+#        "-static",
+#    ],
+    target_compatible_with = requires_cuda(),
+#    features = ["fully_static_link"],
+)
+
+#    copts = [
+#        "--std=c++17",
+#        "-Xfatbin",
+#        "-compress-all",
+#        "-Xcudafe",
+#        "--display_error_number",
+#        "-DCUDA_PTX_FP8_F2FP_ENABLED",
+#        "-Xcompiler",
+#        "-O3",
+#        "--use_fast_math",
+#        "-lineinfo",
+#        "--ptxas-options",
+#        "-v",
+#    ],
+#    deps = [
+#        "@rules_cuda//cuda:runtime",
+#
+#        "@local_cuda//:cublas"
+#        "@local_cuda//:cuda",
+#        "@local_cuda//:cuda_runtime_static",
+#        "@local_cuda//:nvtx",
+#    ],

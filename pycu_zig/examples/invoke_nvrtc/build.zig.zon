@@ -1,0 +1,25 @@
+.{
+    .name = .pycu_zig,
+    .version = "0.0.0",
+    .fingerprint = 0xa2311f2d142075e7,
+    .minimum_zig_version = "0.14.0",
+    .dependencies = .{
+        .cudaz = .{
+            .url = "https://github.com/akhildevelops/cudaz/archive/0.2.0.tar.gz",
+            .hash = "cudaz-0.2.0-f9c0hmiiAABfJu458PDlx1N6TWp5feCJv7wt1fWe42ph",
+        },
+    },
+    .paths = .{
+        // This makes *all* files, recursively, included in this package. It is generally
+        // better to explicitly list the files and directories instead, to insure that
+        // fetching from tarballs, file system paths, and version control all result
+        // in the same contents hash.
+        "",
+        // For example...
+        //"build.zig",
+        //"build.zig.zon",
+        //"src",
+        //"LICENSE",
+        //"README.md",
+    },
+}

@@ -1,0 +1,5 @@
+[tools]
+aws-cli = "latest"
+node = "latest"
+pnpm = "latest"
+pulumi = "latest"

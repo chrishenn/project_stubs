@@ -1,0 +1,28 @@
+# https://stackoverflow.com/questions/25748039/add-cuda-to-ros-package
+find_package(CUDA REQUIRED)
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -fPIC")
+set(CMAKE_CUDA_SEPARABLE_COMPILATION ON)
+
+# set CUDA_NVCC_FLAGS as you would do with CXX/C FLAGS
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CURAND_FLAGS} -fPIC")
+set(CUDA_SEPARABLE_COMPILATION ON)
+find_package(OpenCV 3 REQUIRED)
+
+find_package(OpenCV REQUIRED)
+find_package(catkin REQUIRED COMPONENTS message_generation roscpp tool_segmentation)
+
+find_package(CUDAToolkit REQUIRED)
+
+include_directories(SYSTEM ${OpenCV_INCLUDE_DIRS})
+include_directories(include ${catkin_INCLUDE_DIRS} tool_model_lib )
+
+cuda_add_library(tool_tracking_particle src/ParticleFilter.cu src/Particle.cu)
+add_executable(particle src/tracking_particle.cpp)
+target_link_libraries(particle tool_tracking_particle ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} davinci_kinematics_cuda davinci_kinematics_definitions_cuda)
+
+cuda_add_executable(test_particlefilter src/ParticleFilter.cu src/Particle.cu)
+target_link_libraries(test_particlefilter tool_tracking_particle ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${CUDA_LIBRARIES})
+add_executable(test_particlefilter src/ParticleFilter.cu src/Particle.cu)
+target_include_directories(test_particlefilter SYSTEM PRIVATE ${OpenCV_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+target_include_directories(test_particlefilter PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(test_particlefilter PRIVATE ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} CUDA::curand)

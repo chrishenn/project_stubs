@@ -1,0 +1,11 @@
+.{
+    .name = "metaphor",
+    .version = "0.0.0",
+    .paths = .{
+        "src/",
+        "build.zig",
+        "README.md",
+        "LICENSE.md",
+        "build.zig.zon",
+    },
+}

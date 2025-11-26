@@ -1,0 +1,18 @@
+spack:
+  specs:
+    - cuda@12.6
+    - gcc@13
+    - cmake
+    - ninja
+    - git
+    - tar
+    - gzip
+    - pkg-config
+    - libffi
+    - openssl
+    - openblas
+    - curl
+    - cudnn
+  view: true
+  concretizer:
+    unify: true

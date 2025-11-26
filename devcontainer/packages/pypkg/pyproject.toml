@@ -1,0 +1,42 @@
+[project]
+name = "pypkg"
+version = "0.0.1"
+description = ""
+readme = "readme.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.3.3",
+    "torch>=2.8.0",
+]
+
+[project.scripts]
+main = "pypkg.main:test_versions"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18.2",
+    "pyclean>=3.1.0",
+    "pytest>=8.4.2",
+    "ruff>=0.13.2",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu129"
+url = "https://download.pytorch.org/whl/cu129"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu129", marker = "platform_system != 'Darwin'"}]
+torchvision = [{ index = "pytorch-cu129", marker = "platform_system != 'Darwin'"}]
+
+[build-system]
+requires = ["uv_build<=0.8.22"]
+build-backend = "uv_build"
+
+[tool.hatch.build.targets.sdist]
+include = ["src/"]
+exclude = ["__pycache__/"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pypkg"]
+

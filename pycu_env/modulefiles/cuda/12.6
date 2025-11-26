@@ -1,0 +1,18 @@
+#%Module1.0
+## cuda 12.6 modulefile
+
+proc ModulesHelp { } {
+    global version
+    puts stderr "\tLoad CUDA toolkit $version\n"
+}
+
+module-whatis "Load CUDA toolkit 12.6"
+
+set version 12.6
+set root /usr/local/cuda-12.6
+
+setenv CUDA_HOME $root
+prepend-path PATH $root/bin
+prepend-path LD_LIBRARY_PATH $root/extras/CUPTI/lib64
+prepend-path LD_LIBRARY_PATH $root/lib64
+conflict cuda

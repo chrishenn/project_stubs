@@ -1,0 +1,36 @@
+[project]
+name = "pydust_test"
+version = "0.0.1"
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+
+[dependency-groups]
+dev = []
+
+[build-system]
+requires = ["hatchling", "hatch-build-scripts"]
+build-backend = "hatchling.build"
+
+[tool.pydust]
+#self_managed = true
+
+[[tool.hatch.build.targets.wheel.hooks.build-scripts.scripts]]
+commands = [
+#    "python build.py",
+]
+artifacts = [
+    #    "_C*.so",
+]
+out_dir = "src"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src",
+]
+exclude = [
+    "__pycache__/",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

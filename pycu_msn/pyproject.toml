@@ -1,0 +1,8 @@
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["packages*"]
+norecursedirs = ["src", "subprojects"]
+python_files = ["*test*.py"]
+addopts = "-s --no-header --disable-warnings"

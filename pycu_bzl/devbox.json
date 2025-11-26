@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
+  "packages": {
+    "cudaPackages.cuda_nvcc": "latest",
+    "cudaPackages.cudatoolkit": "12.4",
+    "cudaPackages.cuda_cudart": "latest",
+    "cudaPackages.cuda_cupti": "latest",
+    "cudaPackages.cuda_nvrtc": "latest",
+    "cudaPackages.cuda_nvtx": "latest",
+    "cudaPackages.cudnn": "latest",
+    "cudaPackages.libcublas": "latest",
+    "cudaPackages.libcufft": "latest",
+    "cudaPackages.libcurand": "latest",
+    "cudaPackages.libcusolver": "latest",
+    "cudaPackages.libcusparse": {
+      "version": "latest",
+      "outputs": ["out", "dev", "lib", "static"]
+    },
+    "cudaPackages.libnvjitlink": "latest",
+    "cudaPackages.nccl": "latest",
+    "uv": "latest",
+    "cmake": "latest",
+    "ninja": "latest",
+    "gcc": "13",
+    "bazelisk": "latest"
+  },
+  "shell": {
+    "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
+    "scripts": {
+      "test": ["echo \"Error: no test specified\" && exit 1"]
+    }
+  }
+}

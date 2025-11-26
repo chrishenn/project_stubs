@@ -1,0 +1,70 @@
+# more python/cuda/cpp configurations, explanations, for reference
+
+cmake_minimum_required(VERSION 3.30 FATAL_ERROR)
+set(EXT_NAME "_C")
+
+# Commented out for debugging. Cuda code will build against "native" gpu arch's, unless spec'd here
+# set(TORCH_CUDA_ARCH_LIST "8.6")
+
+# torch/caffe options. not required for our extension, but included for reference
+set(CAFFE2_USE_CUDNN on)
+set(CAFFE2_USE_CUSPARSELT on)
+set(CAFFE2_USE_CUFILE on)
+set(USE_CUDSS on)
+
+# cmake will choose gcc/g++ as default
+set(CMAKE_C_COMPILER gcc)
+set(CMAKE_CXX_COMPILER g++)
+
+# clang will also work as a host compiler
+set(CMAKE_C_COMPILER clang++)
+set(CMAKE_CXX_COMPILER clang++)
+
+set(cuda_flags
+    --std=c++17 -Xfatbin -compress-all -Xcudafe --display_error_number
+    -DCUDA_PTX_FP8_F2FP_ENABLED -Xcompiler -O3 --use_fast_math -lineinfo --ptxas-options -v)
+add_compile_options("$<$<COMPILE_LANGUAGE:CUDA>:${cuda_flags}>")
+
+# project
+project(${EXT_NAME} LANGUAGES CUDA CXX)
+
+# the full `Development` component is needed to link against Python::Python target below
+# but only the Development.Module part is needed for this extension
+find_package(Python REQUIRED COMPONENTS Development Interpreter)
+# find_package(Python REQUIRED COMPONENTS Development.Module Interpreter)
+
+# if cmake is having trouble finding libstdc++, try adding Python_STDLIB
+list(APPEND CMAKE_PREFIX_PATH ${Python_SITELIB})
+# list(APPEND CMAKE_PREFIX_PATH ${Python_SITELIB} ${Python_STDLIB})
+
+# required by Torch's cmake and handled there, I believe
+# find_package(CUDAToolkit REQUIRED)
+
+find_package(Torch REQUIRED)
+
+file(GLOB CPP_SRC csrc/*.cpp)
+file(GLOB CU_SRC csrc/*.cu)
+file(GLOB H_SRC csrc/*.h)
+
+# 1) oldest option: Torch's built-in pybind11. adds "lib" to .so name ("lib_C.so")
+add_library(${EXT_NAME} SHARED ${CPP_SRC} ${CU_SRC} ${H_SRC})
+target_include_directories(${EXT_NAME} PRIVATE ${Python_INCLUDE_DIRS})
+
+# 2) pybind11: pybind and nanobind are interchangeable here
+# find_package(pybind11 CONFIG REQUIRED)
+# pybind11_add_module(${EXT_NAME} MODULE ${CPP_SRC} ${CU_SRC} ${H_SRC})
+
+# 3) nanobind: newest option - I don't think STABLE_ABI LTO are used, since torch's pybind is used instead
+# find_package(nanobind CONFIG REQUIRED)
+# nanobind_add_module(${EXT_NAME} STABLE_ABI LTO ${CPP_SRC} ${CU_SRC} ${H_SRC})
+
+# torch_includes: not required for our extension, but included for reference
+# target_include_directories(${EXT_NAME} PUBLIC ${TORCH_INCLUDE_DIR})
+
+# link against python I believe is handled by nanobind, but included for reference
+# target_link_libraries(${EXT_NAME} PRIVATE ${TORCH_LIBRARIES} ${CUDA_LIBRARIES} Python::Python)
+# target_link_libraries(${EXT_NAME} PRIVATE ${TORCH_LIBRARIES} ${CUDA_LIBRARIES})
+target_link_libraries(${EXT_NAME} PRIVATE ${TORCH_LIBRARIES})
+
+# cmake install - needed when our python build backend doesn't install the built .so for us
+# install(TARGETS ${EXT_NAME} LIBRARY DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/src/pycu_ref/")

@@ -1,0 +1,60 @@
+cmake_minimum_required(VERSION 3.18)
+# get cmake 3.18 from conda-forge; cmake < 3.18 doesn't support CMAKE_CUDA_ARCHITECTURES
+# in my case it chose a very old cuda ARCHITECTURE by default, because i have an old geforce for display
+
+project(my_pytorch_extensions LANGUAGES CUDA CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(NOT DEFINED CMAKE_CUDA_STANDARD)
+    set(CMAKE_CUDA_STANDARD 14)
+    set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+endif()
+set(CMAKE_CUDA_ARCHITECTURES 60)
+string(APPEND CMAKE_CUDA_FLAGS " -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options '-fPIC' -O3 --use_fast_math")
+
+# guard all pybind11 references with this.
+# that is, ignore python bindings for the test build
+# c++ code will be #ifndef CMAKE_TEST_BUILD \n pybind11 related stuff \n #endif
+add_compile_definitions(CMAKE_TEST_BUILD)
+
+# can be taken from $ENV{CONDA_PREFIX} but i have the conda environment only on demand and my ide doesn't have it
+set (MY_ANACONDA_PATH "/home/madam/bin/anaconda3")
+
+list(APPEND CMAKE_PREFIX_PATH "${MY_ANACONDA_PATH}/lib/python3.7/site-packages/torch/")
+
+
+# pytorch cuda version and this one must match
+set(CUDNN_INCLUDE_PATH
+   ${MY_ANACONDA_PATH}/pkgs/cudnn-7.6.4-cuda10.1_0/include/
+   )
+set (CUDNN_LIBRARY_PATH
+   ${MY_ANACONDA_PATH}/pkgs/cudnn-7.6.4-cuda10.1_0/lib/libcudnn.so
+   )
+
+find_package(OpenMP REQUIRED)
+find_package(Torch REQUIRED)
+
+set(MY_INCLUDE_PATHS
+    ${MY_ANACONDA_PATH}/include/python3.7m/
+    ../glm
+    .
+)
+
+# SYSTEM hides warnings from external headers
+include_directories(SYSTEM ${MY_INCLUDE_PATHS} SYSTEM ${TORCH_INCLUDE_DIRS})
+
+set(HEADERS
+    common.h
+)
+
+set(EVALUATE2_SOURCES
+    evaluate2/evaluate2_inversed_cpu.cpp
+    evaluate2/evaluate2_inversed_cuda.cpp
+    evaluate2/evaluate2_inversed_cuda.cu
+    evaluate2/test_runner.cpp
+)
+
+add_executable(gm_evaluate2 ${HEADERS} ${EVALUATE2_SOURCES})
+target_link_libraries(gm_evaluate2 PUBLIC OpenMP::OpenMP_CXX torch)

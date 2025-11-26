@@ -1,0 +1,70 @@
+[project]
+name = "pycu_ref"
+version = "0.0.1"
+description = ""
+readme = "readme.md"
+
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.2.1",
+    "torch>=2.5.1",
+    "torchvision>=0.23.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.17.1",
+    "nanobind>=2.5.0",
+    "pybind11>=2.13.6",
+    "pyclean>=3.1.0",
+    "pytest>=8.3.4",
+    "ruff>=0.9.1",
+]
+
+[tool.uv]
+cache-keys = [
+    {file = "pyproject.toml"},
+    {file = "csrc/*"},
+    {file = "CMakeLists.txt"},
+]
+
+[[tool.uv.index]]
+# torch build with cu12.9 will run against ext built with cu13.0, gcc15
+name = "pytorch-cu129"
+url = "https://download.pytorch.org/whl/cu129"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu129", marker = "platform_system != 'Darwin'"}]
+torchvision = [{ index = "pytorch-cu129", marker = "platform_system != 'Darwin'"}]
+
+[build-system]
+requires = ["torch", "hatchling", "hatch-build-scripts", "nanobind"]
+build-backend = "hatchling.build"
+
+[[tool.hatch.build.targets.wheel.hooks.build-scripts.scripts]]
+out_dir = "src/pycu_ref"
+commands = [
+    "rm -rf build",
+    "cmake -G Ninja -S . -B build",
+    "cmake --build build --target _C",
+]
+artifacts = [
+    "*_C*.so",
+]
+clean_artifacts = true
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "csrc/",
+    "test/",
+    "CMakeLists.txt",
+]
+exclude = [
+    "__pycache__/",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pycu_ref"]
+

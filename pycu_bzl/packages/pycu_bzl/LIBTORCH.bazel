@@ -1,0 +1,104 @@
+load("@rules_cuda//cuda:defs.bzl", "requires_cuda", "cuda_library", "cuda_objects")
+
+package(default_visibility = ["//visibility:public"])
+
+# for reference
+#cc_import(name = "aoti_custom_ops", shared_library = "lib/libaoti_custom_ops.so", alwayslink = True)
+#cc_import(name = "XNNPACK", static_library = "lib/libXNNPACK.a", alwayslink = True)
+
+# fix "can't find blah.so.12.4" on python import
+# ln -s libnvrtc-builtins.so libnvrtc-builtins.so.12.4
+
+cc_library(
+    name = "libtorch",
+    srcs = [
+        "lib/libaoti_custom_ops.so",
+        "lib/libbackend_with_compiler.so",
+        "lib/libc10_cuda.so",
+        "lib/libc10.so",
+        "lib/libcaffe2_nvrtc.so",
+        "lib/libcublas-4cc45526.so.12",
+        "lib/libcublasLt-44a813aa.so.12",
+        "lib/libcudart-8774224f.so.12",
+        "lib/libcudnn.so.9",
+        "lib/libcudnn_adv.so.9",
+        "lib/libcudnn_cnn.so.9",
+        "lib/libcudnn_engines_precompiled.so.9",
+        "lib/libcudnn_engines_runtime_compiled.so.9",
+        "lib/libcudnn_graph.so.9",
+        "lib/libcudnn_heuristic.so.9",
+        "lib/libcudnn_ops.so.9",
+        "lib/libgomp-a34b3233.so.1",
+        "lib/libnnapi_backend.so",
+        "lib/libnvrtc-6d168ef8.so.12",
+        "lib/libnvrtc-builtins.so",
+        "lib/libnvrtc-builtins.so.12.4",
+        "lib/libnvToolsExt-847d78f2.so.1",
+        "lib/libshm.so",
+        "lib/libtorch.so",
+        "lib/libtorch_cpu.so",
+        "lib/libtorch_cuda.so",
+        "lib/libtorch_cuda_linalg.so",
+        "lib/libtorch_global_deps.so",
+        "lib/libtorch_python.so",
+        "lib/libasmjit.a",
+        "lib/libbenchmark.a",
+        "lib/libbenchmark_main.a",
+        "lib/libclog.a",
+        "lib/libcpuinfo.a",
+        "lib/libcpuinfo_internals.a",
+        "lib/libdnnl.a",
+        "lib/libfbgemm.a",
+        "lib/libfmt.a",
+        "lib/libgloo.a",
+        "lib/libgloo_cuda.a",
+        "lib/libgmock.a",
+        "lib/libgmock_main.a",
+        "lib/libgtest.a",
+        "lib/libgtest_main.a",
+        "lib/libittnotify.a",
+        "lib/libkineto.a",
+        "lib/libnnpack.a",
+        "lib/libnnpack_reference_layers.a",
+        "lib/libonnx.a",
+        "lib/libonnx_proto.a",
+        "lib/libprotobuf.a",
+        "lib/libprotobuf-lite.a",
+        "lib/libprotoc.a",
+        "lib/libpthreadpool.a",
+        "lib/libpytorch_qnnpack.a",
+        "lib/libtensorpipe.a",
+        "lib/libtensorpipe_cuda.a",
+        "lib/libtensorpipe_uv.a",
+        "lib/libunbox_lib.a",
+        "lib/libXNNPACK.a",
+    ],
+    hdrs = glob(["include/**/*.h"]),
+    includes = [
+        "include",
+        "include/torch/csrc/api/include",
+    ],
+    deps = [
+        "@rules_python//python/cc:current_py_cc_headers",
+        "@rules_cuda//cuda:runtime",
+    ],
+    copts = [
+        "-fPIC",
+    ],
+    cxxopts = [
+        "-fPIC",
+    ],
+    linkopts = [
+        "-fPIC",
+#        "-static", # gcc-13.3.0/lib/gcc/x86_64-unknown-linux-gnu/13.3.0/crtbeginT.o: requires dynamic R_X86_64_32 reloc against '__TMC_END__' which may overflow at runtime; recompile with -fPIC
+        "-lstdc++fs",
+    ],
+
+#    alwayslink = 1,
+#    linkopts = [
+#        "-static",
+#        "-no-pie",
+#    ],
+    features = ["fully_static_link"],
+)
+

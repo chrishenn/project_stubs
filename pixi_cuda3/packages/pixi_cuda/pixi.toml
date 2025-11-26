@@ -1,0 +1,12 @@
+[package]
+name = "pixi_cuda"
+version = "0.1.0"
+
+[package.build]
+backend = { name = "pixi-build-rattler-build", version = "*" }
+
+# this don't work. Two packages in the same recipe file: no way to invoke pixi-build-rattler-build on that recipe?
+[dependencies]
+#pixi_cuda = { path = "." }
+csrc = { path = "." }
+

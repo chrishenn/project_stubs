@@ -1,0 +1,14 @@
+[workspace]
+authors = ["chrishenn <chenn@alum.mit.edu>"]
+channels = ["conda-forge"]
+name = "cpptest"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+clang = ">=21.1.3,<22"
+clang-tools = ">=21.1.3,<22"
+ninja = ">=1.13.1,<2"
+cmake = "==4.0.2"

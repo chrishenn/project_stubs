@@ -1,0 +1,17 @@
+[workspace]
+channels = ["conda-forge", "https://conda.modular.com/max-nightly"]
+platforms = ["linux-64"]
+preview = ["pixi-build"]
+
+[dependencies]
+pixi_cuda = { path = "packages/pixi_cuda" }
+pixi_cuda_c = { path = "packages/pixi_cuda_c" }
+
+[environments]
+default = { features = ["dev"], solve-group = "main" }
+
+[feature.dev.dependencies]
+pixi-pycharm = "*"
+
+[system-requirements]
+cuda = "12.9"

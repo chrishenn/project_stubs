@@ -1,0 +1,14 @@
+[project]
+name = "ptext"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+
+requires-python = ">=3.12"
+
+
+[build-system]
+requires = ["setuptools", "torch"]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { file = "ext/*" }, { git = true }]

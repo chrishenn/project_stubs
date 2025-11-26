@@ -1,0 +1,95 @@
+[project]
+name = "pycu-xm"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "Chris Henn", email = "chenn@alum.mit.edu" }]
+
+requires-python = ">=3.13"
+dependencies = [
+    "more-itertools>=10.6.0",
+    "numpy>=2.2.2",
+    "torch>=2.6.0",
+    # temporary issue: torch broke their wheels (including the nightly wheels), so
+    #   uv pip install torch --index-url https://download.pytorch.org/whl/cu126
+    # installs the necessary cuda runtime packages, but then
+    #   uv sync
+    # uninstalls them. So we have to manually add all these runtime cuda deps from pytorch
+    "nvidia-cublas-cu12==12.6.4.1",
+    "nvidia-cuda-cupti-cu12==12.6.80",
+    "nvidia-cuda-nvrtc-cu12==12.6.77",
+    "nvidia-cuda-runtime-cu12==12.6.77",
+    "nvidia-cudnn-cu12==9.5.1.17",
+    "nvidia-cufft-cu12==11.3.0.4",
+    "nvidia-curand-cu12==10.3.7.77",
+    "nvidia-cusolver-cu12==11.7.1.2",
+    "nvidia-cusparse-cu12==12.5.4.2",
+    "nvidia-cusparselt-cu12==0.6.3",
+    "nvidia-nccl-cu12==2.21.5",
+    "nvidia-nvjitlink-cu12==12.6.85",
+    "nvidia-nvtx-cu12==12.6.77",
+    "triton==3.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+    # required to build libtorch from source with xmake using custom xmake.lua
+    "wheel>=0.45.1",
+    "setuptools>=75.8.2",
+    "typing-extensions>=4.12.2",
+    "pyyaml>=6.0.2",
+    "numpy>=2.2.3",
+]
+
+
+[tool.uv.sources]
+torch = [{ index = "pytorch" }]
+torchvision = [{ index = "pytorch" }]
+nvidia-cuda-nvrtc-cu12 = [{ index = "pytorch" }]
+nvidia-cuda-runtime-cu12 = [{ index = "pytorch" }]
+nvidia-cuda-cupti-cu12 = [{ index = "pytorch" }]
+nvidia-cudnn-cu12 = [{ index = "pytorch" }]
+nvidia-cublas-cu12 = [{ index = "pytorch" }]
+nvidia-cufft-cu12 = [{ index = "pytorch" }]
+nvidia-curand-cu12 = [{ index = "pytorch" }]
+nvidia-cusolver-cu12 = [{ index = "pytorch" }]
+nvidia-cusparse-cu12 = [{ index = "pytorch" }]
+nvidia-cusparselt-cu12 = [{ index = "pytorch" }]
+nvidia-nccl-cu12 = [{ index = "pytorch" }]
+nvidia-nvtx-cu12 = [{ index = "pytorch" }]
+nvidia-nvjitlink-cu12 = [{ index = "pytorch" }]
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv]
+cache-keys = [{file = "pycu_xm/_C/xmake.lua"}, {file = "pycu_xm/_C/csrc/*"}]
+
+[build-system]
+requires = ["hatchling", "hatch-build-scripts", "typing_extensions", "pyyaml", "numpy", "wheel", "setuptools"]
+build-backend = "hatchling.build"
+
+[[tool.hatch.build.targets.wheel.hooks.build-scripts.scripts]]
+out_dir = "src/pycu_xm"
+commands = [
+    "xmake -P _C",
+]
+artifacts = [
+    "_C*.so"
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src",
+    "test",
+    "pycu_xm",
+]
+exclude = [
+    "__pycache__/",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pycu_xm"]

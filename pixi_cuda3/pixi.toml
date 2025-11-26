@@ -1,0 +1,18 @@
+[workspace]
+channels = ["conda-forge", "https://conda.modular.com/max-nightly"]
+platforms = ["linux-64"]
+preview = ["pixi-build"]
+
+# this don't work. Two packages in the same recipe file: no way to invoke pixi-build-rattler-build on that recipe?
+[dependencies]
+pixi_cuda = { path = "packages/pixi_cuda" }
+csrc = { path = "packages/pixi_cuda" }
+
+[feature.dev.dependencies]
+pixi-pycharm = "*"
+
+[environments]
+default = { features = ["dev"], solve-group = "main" }
+
+[system-requirements]
+cuda = "12.9"

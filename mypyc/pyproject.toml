@@ -1,0 +1,8 @@
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["packages*"]
+python_files = ["test_*.py"]
+pytest_plugins = ["pytest_pretty"]
+addopts = "-sq --no-header --disable-warnings"
