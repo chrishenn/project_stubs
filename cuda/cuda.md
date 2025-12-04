@@ -8,7 +8,6 @@ note: no assembly view for .cu files?
   - sources the build env when entering project dir
   - provides tasks to trivially build, run project bin
 - pixi installs the dev shell with
-
   - cmake@4.0.2 (matches latest built into IDE)
   - ninja
   - clang

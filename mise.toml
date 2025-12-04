@@ -1,7 +1,7 @@
 [tools]
 gitleaks = "latest"
 just = "latest"
-prettier = "next"
+prettier = "latest"
 ruff = "latest"
 bun = "latest"
 node = "latest"

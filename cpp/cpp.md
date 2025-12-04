@@ -7,7 +7,6 @@ build cpp binary to c++26 standard with clang@21.1
   - sources the build env when entering project dir
   - provides tasks to trivially build, run project bin
 - pixi installs the dev shell with
-
   - cmake@4.0.2 (matches latest built into IDE)
   - ninja
   - clang

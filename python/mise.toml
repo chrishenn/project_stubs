@@ -2,7 +2,7 @@
 cmake = "latest"
 just = "latest"
 ninja = "latest"
-prettier = "next"
+prettier = "latest"
 
 [hooks.enter]
 shell = "bash"

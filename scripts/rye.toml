@@ -1,0 +1,34 @@
+[project]
+name = "project"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "me", email = "chenn@alum.mit.edu" }
+]
+dependencies = [
+    # out of sync
+]
+readme = "readme.md"
+requires-python = ">= 3.11"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.rye.scripts]
+apt_deps = "src/tests/experiments/scripts/apt_deps.sh"
+clean = "src/tests/experiments/scripts/pyclean.sh"
+
+format = { chain = ["lint:isort", "lint:black", "lint:fix"] }
+"format:isort" = "isort src"
+"format:black" = "black src"
+"format:fix" = "rye lint --fix src/tests/experiments"
+
+lint = { chain = ["lint:isort", "lint:black", "lint:fix", "lint:pylint"] }
+"lint:isort" = "isort src"
+"lint:black" = "black src"
+"lint:fix" = "rye lint --fix src/tests/experiments"
+
+check = { chain = ["check:isort", "check:black", "check:pylint", "check:tests"] }
+"check:isort" = "isort --check src"
+"check:black" = "black --check src"
