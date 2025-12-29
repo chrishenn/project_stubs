@@ -9,7 +9,6 @@ wheels/
 *.so
 .devbox/
 /.spack-env/
-/.flox/
 .pytest_cache/
 node_modules/
 .mypy_cache

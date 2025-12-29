@@ -1,0 +1,117 @@
+version = 1
+
+[install]
+# shell helpers
+gum = { pkg-path = "gum", pkg-group = "shell" }
+coreutils = { pkg-path = "coreutils", pkg-group = "shell" }
+
+# system build deps
+uv =    { pkg-path = "uv" }
+gcc =   { pkg-path = "gcc",   version = "13"}
+cmake = { pkg-path = "cmake" }
+ninja = { pkg-path = "ninja" }
+
+cudatoolkit = { pkg-path = "cudaPackages.cudatoolkit", version = "12.4", priority = 0}
+nccl =        { pkg-path = "cudaPackages.nccl" }
+cudart =      { pkg-path = "cudaPackages.cuda_cudart", priority = 4 }
+cudnn =       { pkg-path = "cudaPackages.cudnn",       priority = 3 }
+
+
+[vars]
+
+
+[hook]
+on-activate = '''
+export FLOX_PYTHON_UV_CACHE_DIR="$FLOX_ENV_CACHE/python-uv"
+mkdir -p "$FLOX_PYTHON_UV_CACHE_DIR"
+
+export FLOX_PYTHON_UV_VENV_PATH="$FLOX_PYTHON_UV_CACHE_DIR/venv"
+export FLOX_PYTHON_UV_VENV_INTERPRETER="$(cat "$FLOX_PYTHON_UV_CACHE_DIR/venv.interpreter" 2> /dev/null || echo false )"
+export FLOX_PYTHON_UV_INTERPRETER="$(realpath $(which python3))"
+
+# Make sure any tools are not attempting to use the Python interpreter from any
+# existing virtual environment.
+unset VIRTUAL_ENV
+
+export UV_PROJECT_ENVIRONMENT="$FLOX_PYTHON_UV_VENV_PATH"
+
+function indent() {
+  echo -e '{{ Foreground "#cccccc" " │ "}}' | \
+    gum format -t template --theme=auto
+}
+
+function with_spinner() {
+  if [[ "$FLOX_ENVS_TESTING" == "1" ]]; then
+    bash -c "$1"
+  else
+    echo
+    gum spin \
+      --show-error \
+      --spinner line \
+      --spinner.foreground="#cccccc" \
+      --title " >>> $2 ..." \
+      --title.foreground="#cccccc" \
+        -- bash -c "$1"
+    echo -en "\033[2A\033[K"
+  fi
+}
+
+function ensure_venv() {
+  uv venv -p "$FLOX_PYTHON_UV_INTERPRETER" "$FLOX_PYTHON_UV_VENV_PATH"
+  source "$FLOX_PYTHON_UV_VENV_PATH/bin/activate"
+}
+export -f ensure_venv
+
+function install_packages() {
+  uv sync
+}
+export -f install_packages
+
+indent && echo
+indent && echo
+
+if [ "$FLOX_PYTHON_UV_VENV_INTERPRETER" != "$FLOX_PYTHON_UV_INTERPRETER" ]; then
+  with_spinner ensure_venv "Creating virtual environment"
+  indent && echo -e "{{ Foreground \"#ffffff\" \"✅ Virtual environment was created.\" }}\n" \
+    | gum format -t template
+else
+  indent && echo -e "{{ Foreground \"#ffffff\" \"✅ Virtual environment already exists.\" }}\n" \
+    | gum format -t template
+fi
+
+indent && echo
+
+if [ -f pyproject.toml ]; then
+  with_spinner install_packages "Installing Python packages"
+  indent && echo -e "{{ Foreground \"#ffffff\" \"✅ Python packages installed.\" }}\n" \
+    | gum format -t template
+else
+  indent && echo -e "{{ Foreground \"#ffffff\" \"✅ No need to install Python packages.\" }}\n" \
+    | gum format -t template
+fi
+
+indent && echo
+
+'''
+
+[profile]
+bash = '''
+source "$FLOX_PYTHON_UV_VENV_PATH/bin/activate"
+'''
+fish = '''
+source "$FLOX_PYTHON_UV_VENV_PATH/bin/activate.fish"
+'''
+tcsh = '''
+source "$FLOX_PYTHON_UV_VENV_PATH/bin/activate.csh"
+'''
+zsh = '''
+source "$FLOX_PYTHON_UV_VENV_PATH/bin/activate"
+'''
+
+[options]
+systems = [
+  "aarch64-linux",
+  "x86_64-linux",
+]
+#cuda-detection = false
+allow.unfree = true

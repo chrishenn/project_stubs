@@ -1,0 +1,709 @@
+{
+  "lockfile-version": 1,
+  "manifest": {
+    "version": 1,
+    "install": {
+      "cmake": {
+        "pkg-path": "cmake"
+      },
+      "coreutils": {
+        "pkg-path": "coreutils",
+        "pkg-group": "shell"
+      },
+      "cudart": {
+        "pkg-path": "cudaPackages.cuda_cudart",
+        "priority": 4
+      },
+      "cudatoolkit": {
+        "pkg-path": "cudaPackages.cudatoolkit",
+        "priority": 0,
+        "version": "12.4"
+      },
+      "cudnn": {
+        "pkg-path": "cudaPackages.cudnn",
+        "priority": 3
+      },
+      "gcc": {
+        "pkg-path": "gcc",
+        "version": "13"
+      },
+      "gum": {
+        "pkg-path": "gum",
+        "pkg-group": "shell"
+      },
+      "nccl": {
+        "pkg-path": "cudaPackages.nccl"
+      },
+      "ninja": {
+        "pkg-path": "ninja"
+      },
+      "uv": {
+        "pkg-path": "uv"
+      }
+    },
+    "hook": {
+      "on-activate": "export FLOX_PYTHON_UV_CACHE_DIR=\"$FLOX_ENV_CACHE/python-uv\"\nmkdir -p \"$FLOX_PYTHON_UV_CACHE_DIR\"\n\nexport FLOX_PYTHON_UV_VENV_PATH=\"$FLOX_PYTHON_UV_CACHE_DIR/venv\"\nexport FLOX_PYTHON_UV_VENV_INTERPRETER=\"$(cat \"$FLOX_PYTHON_UV_CACHE_DIR/venv.interpreter\" 2> /dev/null || echo false )\"\nexport FLOX_PYTHON_UV_INTERPRETER=\"$(realpath $(which python3))\"\n\n# Make sure any tools are not attempting to use the Python interpreter from any\n# existing virtual environment.\nunset VIRTUAL_ENV\n\nexport UV_PROJECT_ENVIRONMENT=\"$FLOX_PYTHON_UV_VENV_PATH\"\n\nfunction indent() {\n  echo -e '{{ Foreground \"#cccccc\" \" │ \"}}' | \\\n    gum format -t template --theme=auto\n}\n\nfunction with_spinner() {\n  if [[ \"$FLOX_ENVS_TESTING\" == \"1\" ]]; then\n    bash -c \"$1\"\n  else\n    echo\n    gum spin \\\n      --show-error \\\n      --spinner line \\\n      --spinner.foreground=\"#cccccc\" \\\n      --title \" >>> $2 ...\" \\\n      --title.foreground=\"#cccccc\" \\\n        -- bash -c \"$1\"\n    echo -en \"\\033[2A\\033[K\"\n  fi\n}\n\nfunction ensure_venv() {\n  uv venv -p \"$FLOX_PYTHON_UV_INTERPRETER\" \"$FLOX_PYTHON_UV_VENV_PATH\"\n  source \"$FLOX_PYTHON_UV_VENV_PATH/bin/activate\"\n}\nexport -f ensure_venv\n\nfunction install_packages() {\n  uv sync\n}\nexport -f install_packages\n\nindent && echo\nindent && echo\n\nif [ \"$FLOX_PYTHON_UV_VENV_INTERPRETER\" != \"$FLOX_PYTHON_UV_INTERPRETER\" ]; then\n  with_spinner ensure_venv \"Creating virtual environment\"\n  indent && echo -e \"{{ Foreground \\\"#ffffff\\\" \\\"✅ Virtual environment was created.\\\" }}\\n\" \\\n    | gum format -t template\nelse\n  indent && echo -e \"{{ Foreground \\\"#ffffff\\\" \\\"✅ Virtual environment already exists.\\\" }}\\n\" \\\n    | gum format -t template\nfi\n\nindent && echo\n\nif [ -f pyproject.toml ]; then\n  with_spinner install_packages \"Installing Python packages\"\n  indent && echo -e \"{{ Foreground \\\"#ffffff\\\" \\\"✅ Python packages installed.\\\" }}\\n\" \\\n    | gum format -t template\nelse\n  indent && echo -e \"{{ Foreground \\\"#ffffff\\\" \\\"✅ No need to install Python packages.\\\" }}\\n\" \\\n    | gum format -t template\nfi\n\nindent && echo\n\n"
+    },
+    "profile": {
+      "bash": "source \"$FLOX_PYTHON_UV_VENV_PATH/bin/activate\"\n",
+      "zsh": "source \"$FLOX_PYTHON_UV_VENV_PATH/bin/activate\"\n",
+      "fish": "source \"$FLOX_PYTHON_UV_VENV_PATH/bin/activate.fish\"\n",
+      "tcsh": "source \"$FLOX_PYTHON_UV_VENV_PATH/bin/activate.csh\"\n"
+    },
+    "options": {
+      "systems": [
+        "aarch64-linux",
+        "x86_64-linux"
+      ],
+      "allow": {
+        "unfree": true,
+        "licenses": []
+      },
+      "semver": {}
+    }
+  },
+  "packages": [
+    {
+      "attr_path": "coreutils",
+      "broken": false,
+      "derivation": "/nix/store/56knridcjxacyfpy8k911hi3y9ac4ann-coreutils-9.6.drv",
+      "description": "GNU Core Utilities",
+      "install_id": "coreutils",
+      "license": "GPL-3.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d69ab0d71b22fa1ce3dbeff666e6deb4917db049",
+      "name": "coreutils-9.6",
+      "pname": "coreutils",
+      "rev": "d69ab0d71b22fa1ce3dbeff666e6deb4917db049",
+      "rev_count": 762848,
+      "rev_date": "2025-03-05T11:18:42Z",
+      "scrape_date": "2025-03-07T00:30:55Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "9.6",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "debug": "/nix/store/j44aax6v510vrqw3xy8xai2kxrs0dhd8-coreutils-9.6-debug",
+        "info": "/nix/store/5f2kqrs31kz6ci1x3y1s9jidh2p0r7aw-coreutils-9.6-info",
+        "out": "/nix/store/rs83v3ivkadsk9p1wk9qrzr3af26x829-coreutils-9.6"
+      },
+      "system": "aarch64-linux",
+      "group": "shell",
+      "priority": 5
+    },
+    {
+      "attr_path": "coreutils",
+      "broken": false,
+      "derivation": "/nix/store/l25fdyclnnwp5gjbb7xb7h4vsgqp03dk-coreutils-9.6.drv",
+      "description": "GNU Core Utilities",
+      "install_id": "coreutils",
+      "license": "GPL-3.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d69ab0d71b22fa1ce3dbeff666e6deb4917db049",
+      "name": "coreutils-9.6",
+      "pname": "coreutils",
+      "rev": "d69ab0d71b22fa1ce3dbeff666e6deb4917db049",
+      "rev_count": 762848,
+      "rev_date": "2025-03-05T11:18:42Z",
+      "scrape_date": "2025-03-07T00:30:55Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "9.6",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "debug": "/nix/store/m6wn8q0zvy7pz6wjd221hav5w4blicf7-coreutils-9.6-debug",
+        "info": "/nix/store/i3bay64pdck4zq094qks7j1ivg042nzg-coreutils-9.6-info",
+        "out": "/nix/store/fr9yr63a1267cr0r86w18c77mh3xavcc-coreutils-9.6"
+      },
+      "system": "x86_64-linux",
+      "group": "shell",
+      "priority": 5
+    },
+    {
+      "attr_path": "gum",
+      "broken": false,
+      "derivation": "/nix/store/jcyxkyvyyqv309m0vxgkwqbwmh7c859k-gum-0.15.2.drv",
+      "description": "Tasty Bubble Gum for your shell",
+      "install_id": "gum",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d69ab0d71b22fa1ce3dbeff666e6deb4917db049",
+      "name": "gum-0.15.2",
+      "pname": "gum",
+      "rev": "d69ab0d71b22fa1ce3dbeff666e6deb4917db049",
+      "rev_count": 762848,
+      "rev_date": "2025-03-05T11:18:42Z",
+      "scrape_date": "2025-03-07T00:30:55Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.15.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/apc8nhsmgm3aida2x2814f6fl4h96lpm-gum-0.15.2"
+      },
+      "system": "aarch64-linux",
+      "group": "shell",
+      "priority": 5
+    },
+    {
+      "attr_path": "gum",
+      "broken": false,
+      "derivation": "/nix/store/9n9fxc5lf4k7d1jcmrfzivy2cq6hi7mp-gum-0.15.2.drv",
+      "description": "Tasty Bubble Gum for your shell",
+      "install_id": "gum",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d69ab0d71b22fa1ce3dbeff666e6deb4917db049",
+      "name": "gum-0.15.2",
+      "pname": "gum",
+      "rev": "d69ab0d71b22fa1ce3dbeff666e6deb4917db049",
+      "rev_count": 762848,
+      "rev_date": "2025-03-05T11:18:42Z",
+      "scrape_date": "2025-03-07T00:30:55Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.15.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/zlxpr8hpsxjmvzs33yln133nhc73a8z7-gum-0.15.2"
+      },
+      "system": "x86_64-linux",
+      "group": "shell",
+      "priority": 5
+    },
+    {
+      "attr_path": "cmake",
+      "broken": false,
+      "derivation": "/nix/store/64m5nwh24031af925lpjfgv4jxpzcm2y-cmake-3.30.5.drv",
+      "description": "Cross-platform, open-source build system generator",
+      "install_id": "cmake",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "cmake-3.30.5",
+      "pname": "cmake",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.30.5",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "debug": "/nix/store/vga7iy0xq0rnzz8b5bkki4iqvnchb60w-cmake-3.30.5-debug",
+        "out": "/nix/store/6941y72hx1k8rxiygm4iin16i4zhcdqr-cmake-3.30.5"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "cmake",
+      "broken": false,
+      "derivation": "/nix/store/ksghs6rzwmd0lwq9fp3sd4y7aky96g3b-cmake-3.30.5.drv",
+      "description": "Cross-platform, open-source build system generator",
+      "install_id": "cmake",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "cmake-3.30.5",
+      "pname": "cmake",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.30.5",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "debug": "/nix/store/0a4j4w2jxj7ha0ni2vb48d8prvsw7cr1-cmake-3.30.5-debug",
+        "out": "/nix/store/4k2h9qsps52n1v56zq03yi67dwmxa81i-cmake-3.30.5"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "cudaPackages.cuda_cudart",
+      "broken": false,
+      "derivation": "/nix/store/xz0izvglph711kn4yk918mblipz5pv48-cuda_cudart-12.4.99.drv",
+      "description": "CUDA Runtime (cudart). By downloading and using the packages you accept the terms and conditions of the CUDA EULA",
+      "install_id": "cudart",
+      "license": "CUDA Toolkit End User License Agreement (EULA)",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "cuda_cudart-12.4.99",
+      "pname": "cuda_cudart",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": true,
+      "version": "12.4.99",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "dev": "/nix/store/9797245fysywxp0wyz02qc8cpdxgq0fb-cuda_cudart-12.4.99-dev",
+        "lib": "/nix/store/p6030gayqk6kap3qrp19cxyc1sp7cn1a-cuda_cudart-12.4.99-lib",
+        "out": "/nix/store/rw881l5yrwmlrnd1pli0zsigdgg3vzv3-cuda_cudart-12.4.99",
+        "static": "/nix/store/fxz1vpp8nq3a74f2cl36fi7lxirjkpc7-cuda_cudart-12.4.99-static",
+        "stubs": "/nix/store/2i6x0pi9gwrg5xdw7fji153gyinx7zzv-cuda_cudart-12.4.99-stubs"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 4
+    },
+    {
+      "attr_path": "cudaPackages.cuda_cudart",
+      "broken": false,
+      "derivation": "/nix/store/qh896rffbykwmrdihpcdzabxnd17rvsq-cuda_cudart-12.4.99.drv",
+      "description": "CUDA Runtime (cudart). By downloading and using the packages you accept the terms and conditions of the CUDA EULA",
+      "install_id": "cudart",
+      "license": "CUDA Toolkit End User License Agreement (EULA)",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "cuda_cudart-12.4.99",
+      "pname": "cuda_cudart",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": true,
+      "version": "12.4.99",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "dev": "/nix/store/c9ssqifwhvxnrk2s4j1mxkmsw1jwnd5f-cuda_cudart-12.4.99-dev",
+        "lib": "/nix/store/x9lnlkmvfvvph8r723z3vrkv0r2fh1fa-cuda_cudart-12.4.99-lib",
+        "out": "/nix/store/fkr6jlrc68l1w1g409fdhwf127kjh7ns-cuda_cudart-12.4.99",
+        "static": "/nix/store/kr9l78jggnw000d84hqf38jxj4ykj3vv-cuda_cudart-12.4.99-static",
+        "stubs": "/nix/store/2cl3nwnrnjpy5iv2k5v25lj0vc7z9nxs-cuda_cudart-12.4.99-stubs"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 4
+    },
+    {
+      "attr_path": "cudaPackages.cudatoolkit",
+      "broken": false,
+      "derivation": "/nix/store/82f936xn0i0nh7lcxijana726v3c3af4-cuda-merged-12.4.drv",
+      "description": "Wrapper substituting the deprecated runfile-based CUDA installation",
+      "install_id": "cudatoolkit",
+      "license": "CUDA Toolkit End User License Agreement (EULA)",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "cuda-merged-12.4",
+      "pname": "cudatoolkit",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": true,
+      "version": "12.4",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/kalninwrdsz3mnfaj4m1kz1x4zyfj76y-cuda-merged-12.4"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 0
+    },
+    {
+      "attr_path": "cudaPackages.cudatoolkit",
+      "broken": false,
+      "derivation": "/nix/store/5rr8344zqk9h9gy4www9kdmmfzfxvmzg-cuda-merged-12.4.drv",
+      "description": "Wrapper substituting the deprecated runfile-based CUDA installation",
+      "install_id": "cudatoolkit",
+      "license": "CUDA Toolkit End User License Agreement (EULA)",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "cuda-merged-12.4",
+      "pname": "cudatoolkit",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": true,
+      "version": "12.4",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/53ww4g3wf0y5vxwmypw04q1a0h83qjfd-cuda-merged-12.4"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 0
+    },
+    {
+      "attr_path": "cudaPackages.cudnn",
+      "broken": false,
+      "derivation": "/nix/store/dpr7rgddchmyb6kwzvp3id4xslwk5c6g-cudnn-9.3.0.75.drv",
+      "description": "NVIDIA CUDA Deep Neural Network library (cuDNN). By downloading and using the packages you accept the terms and conditions of the cuDNN EULA",
+      "install_id": "cudnn",
+      "license": "NVIDIA cuDNN Software License Agreement (EULA)",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "cudnn-9.3.0.75",
+      "pname": "cudnn",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": true,
+      "version": "9.3.0.75",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "dev": "/nix/store/q4pdbch2ld7ll43xwllcd5v9knj7h9cn-cudnn-9.3.0.75-dev",
+        "lib": "/nix/store/kmfw422aq72bk4s0lwrxpp7321hs3cpn-cudnn-9.3.0.75-lib",
+        "out": "/nix/store/zx42nmxhqm914iah4jfi28gkg7k67h8b-cudnn-9.3.0.75",
+        "static": "/nix/store/4r7z2wpl4yzmipwzva43zhfv1pnqwari-cudnn-9.3.0.75-static"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 3
+    },
+    {
+      "attr_path": "cudaPackages.cudnn",
+      "broken": false,
+      "derivation": "/nix/store/f33hdpx7037kic8my0c7jb39snqk3l17-cudnn-9.3.0.75.drv",
+      "description": "NVIDIA CUDA Deep Neural Network library (cuDNN). By downloading and using the packages you accept the terms and conditions of the cuDNN EULA",
+      "install_id": "cudnn",
+      "license": "NVIDIA cuDNN Software License Agreement (EULA)",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "cudnn-9.3.0.75",
+      "pname": "cudnn",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": true,
+      "version": "9.3.0.75",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "dev": "/nix/store/my5yp3qrvd0vp51pbl8vmwwrrbb2gvix-cudnn-9.3.0.75-dev",
+        "lib": "/nix/store/gv90iwpvyzpprj51860l0mh0xxpm755s-cudnn-9.3.0.75-lib",
+        "out": "/nix/store/f8byzc9kq2fdkn49ybsck1951w681vwa-cudnn-9.3.0.75",
+        "static": "/nix/store/3887v038k0dx57hivmkwrmd3b38p66ck-cudnn-9.3.0.75-static"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 3
+    },
+    {
+      "attr_path": "gcc",
+      "broken": false,
+      "derivation": "/nix/store/pjxj3pzbb3ypr9lhl6xfrfb9daanhzg2-gcc-wrapper-13.3.0.drv",
+      "description": "GNU Compiler Collection, version 13.3.0 (wrapper script)",
+      "install_id": "gcc",
+      "license": "GPL-3.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "gcc-wrapper-13.3.0",
+      "pname": "gcc",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "13.3.0",
+      "outputs_to_install": [
+        "man",
+        "out"
+      ],
+      "outputs": {
+        "info": "/nix/store/b0b2h9n97bpwrdxnazh70nlv0knlpd7s-gcc-wrapper-13.3.0-info",
+        "man": "/nix/store/5y6fmjxpv2xc7zhvn02w4ikg1n1rgm0d-gcc-wrapper-13.3.0-man",
+        "out": "/nix/store/ay4xxbjafns12mn2ilhz4y7d3m3ziwqg-gcc-wrapper-13.3.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "gcc",
+      "broken": false,
+      "derivation": "/nix/store/zrp1z93l9cj9ia4n6s9cfs0f3s37r8v1-gcc-wrapper-13.3.0.drv",
+      "description": "GNU Compiler Collection, version 13.3.0 (wrapper script)",
+      "install_id": "gcc",
+      "license": "GPL-3.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "gcc-wrapper-13.3.0",
+      "pname": "gcc",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "13.3.0",
+      "outputs_to_install": [
+        "man",
+        "out"
+      ],
+      "outputs": {
+        "info": "/nix/store/nhjmrmkzyqsff9maxrl0pskqbizpqikz-gcc-wrapper-13.3.0-info",
+        "man": "/nix/store/g6dl0niwffyhk1l59r4zxv94fklx7ijg-gcc-wrapper-13.3.0-man",
+        "out": "/nix/store/4apajimszc47rxwcpvc3g3rj2icinl71-gcc-wrapper-13.3.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "cudaPackages.nccl",
+      "broken": false,
+      "derivation": "/nix/store/75ppcphha2abn0fcykp2w91rxy3vp90d-nccl-2.21.5-1.drv",
+      "description": "Multi-GPU and multi-node collective communication primitives for NVIDIA GPUs",
+      "install_id": "nccl",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "nccl-2.21.5-1",
+      "pname": "nccl",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.21.5-1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "dev": "/nix/store/1ggdf11xbmcicl8aijampashpxghcwy6-nccl-2.21.5-1-dev",
+        "out": "/nix/store/54kzhp6cc3pkj22gr6y2xnx43pzshgf6-nccl-2.21.5-1"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "cudaPackages.nccl",
+      "broken": false,
+      "derivation": "/nix/store/nmbjyrk8dv0ymyyhysbyzg8apqhzmj0n-nccl-2.21.5-1.drv",
+      "description": "Multi-GPU and multi-node collective communication primitives for NVIDIA GPUs",
+      "install_id": "nccl",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "nccl-2.21.5-1",
+      "pname": "nccl",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.21.5-1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "dev": "/nix/store/d79xcnr4r0njpb7whb49zf25cmp0g57l-nccl-2.21.5-1-dev",
+        "out": "/nix/store/xb700zlwmagjn4mccd8s7a577yqpn2m2-nccl-2.21.5-1"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "ninja",
+      "broken": false,
+      "derivation": "/nix/store/djwpijsr30byvcygg04hd03ff2jrm84j-ninja-1.12.1.drv",
+      "description": "Small build system with a focus on speed",
+      "install_id": "ninja",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "ninja-1.12.1",
+      "pname": "ninja",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.12.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/ajmcsvgc3b7zkx3k9irb7wjj9wh486b0-ninja-1.12.1"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "ninja",
+      "broken": false,
+      "derivation": "/nix/store/kzljwjjq7fqrn0gf15dn4p27vdcky8pl-ninja-1.12.1.drv",
+      "description": "Small build system with a focus on speed",
+      "install_id": "ninja",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "ninja-1.12.1",
+      "pname": "ninja",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.12.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/s2lws03pga0vyq84kfa6h041n8csbg4p-ninja-1.12.1"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "uv",
+      "broken": false,
+      "derivation": "/nix/store/n0wd65svgkcfzrf65gpznvjfzxk91gds-uv-0.4.30.drv",
+      "description": "Extremely fast Python package installer and resolver, written in Rust",
+      "install_id": "uv",
+      "license": "[ Apache-2.0, MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "uv-0.4.30",
+      "pname": "uv",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.4.30",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "dist": "/nix/store/i1rvg12ibvdmbnfjdfzi02n273sz659k-uv-0.4.30-dist",
+        "out": "/nix/store/xwmpvkhkxvbibbkfpphijw85l4dxrd6m-uv-0.4.30"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "uv",
+      "broken": false,
+      "derivation": "/nix/store/93b0acjap207px8ibnfyd6i3r69dfb7s-uv-0.4.30.drv",
+      "description": "Extremely fast Python package installer and resolver, written in Rust",
+      "install_id": "uv",
+      "license": "[ Apache-2.0, MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "name": "uv-0.4.30",
+      "pname": "uv",
+      "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+      "rev_count": 724962,
+      "rev_date": "2024-12-19T23:01:11Z",
+      "scrape_date": "2024-12-23T03:54:12Z",
+      "stabilities": [
+        "stable",
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.4.30",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "dist": "/nix/store/93m90v0vlxwmz04pia4hj7ni791x65rv-uv-0.4.30-dist",
+        "out": "/nix/store/w7cs06nn9vvk8a59nv48y4biv9zzv43x-uv-0.4.30"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    }
+  ]
+}
