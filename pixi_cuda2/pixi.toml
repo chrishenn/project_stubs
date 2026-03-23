@@ -6,6 +6,7 @@ preview = ["pixi-build"]
 [dependencies]
 pixi_cuda = { path = "packages/pixi_cuda" }
 pixi_cuda_c = { path = "packages/pixi_cuda_c" }
+pixi-pycharm = "*"
 
 [environments]
 default = { features = ["dev"], solve-group = "main" }
@@ -14,4 +15,4 @@ default = { features = ["dev"], solve-group = "main" }
 pixi-pycharm = "*"
 
 [system-requirements]
-cuda = "12.9"
+cuda = "13"

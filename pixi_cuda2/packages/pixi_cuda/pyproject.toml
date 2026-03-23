@@ -3,5 +3,5 @@ name = "pixi_cuda"
 version = "0.1.0"
 
 [build-system]
-requires = ["uv_build<=0.8.22"]
+requires = ["uv_build"]
 build-backend = "uv_build"

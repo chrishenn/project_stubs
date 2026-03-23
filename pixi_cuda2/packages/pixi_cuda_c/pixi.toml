@@ -12,22 +12,22 @@ extra-args = ["-DCMAKE_BUILD_TYPE=Release", "-DTORCH_CUDA_ARCH_LIST='8.6'"]
 # you need cudnn/cusparse etc in host-deps or torch's cmake can't find em during cmake configure/build file generation
 # pixi shows a "warning: overdepending on lubcudss" but it is necessary
 [package.build-dependencies]
-gcc = ">=14.3.0,<14.4"
-cmake = ">=4.1.1"
-ninja = ">=1.13.1"
-cuda-toolkit = ">=12.9"
+gcc = "*"
+cmake = "*"
+ninja = "*"
+cuda-toolkit = ">=13.2"
 
 [package.host-dependencies]
-python = ">=3.13"
-pytorch-gpu = ">=2.8.0,<3"
-nanobind = ">=2.9.2"
+python = ">=3.11"
+pytorch-gpu = "*"
+nanobind = "*"
 
-cuda-version =">=12.9"
-cuda = ">=12.9"
+cuda-version =">=13.2"
+cuda = ">=13.2"
 cusparselt-dev = "*"
 libcusparse-dev = "*"
 libcudss-dev = "*"
 
 [package.run-dependencies]
-python = ">=3.13"
-pytorch-gpu = ">=2.8.0,<3"
+python = ">=3.11"
+pytorch-gpu = "*"
