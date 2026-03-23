@@ -9,6 +9,8 @@ pnpm = "latest"
 pkl = "latest"
 shfmt = "latest"
 shellcheck = "latest"
+hk = "latest"
+trufflehog = "latest"
 
 [env]
 HK_MISE = 1

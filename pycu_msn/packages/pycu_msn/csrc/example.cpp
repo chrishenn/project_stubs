@@ -19,5 +19,3 @@ TORCH_LIBRARY_IMPL(pycu_msn, CPU, m) {
 TORCH_LIBRARY(pycu_msn, m) {
     m.def("myfn(Tensor input) -> Tensor[]");
 }
-
-

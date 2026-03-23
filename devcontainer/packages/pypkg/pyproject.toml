@@ -39,4 +39,3 @@ exclude = ["__pycache__/"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pypkg"]
-

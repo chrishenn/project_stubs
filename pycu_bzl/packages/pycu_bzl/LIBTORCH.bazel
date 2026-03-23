@@ -101,4 +101,3 @@ cc_library(
 #    ],
     features = ["fully_static_link"],
 )
-

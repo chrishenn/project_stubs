@@ -9,4 +9,3 @@ data/
 *.pth
 checkpoints/
 *.so
-

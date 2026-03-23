@@ -24,3 +24,10 @@ Languages, tools:
 - python wheel | manylinux
 - pulumi
 - devcontainer | jetbrains
+
+# dev
+
+```bash
+# not supported by mise
+brew install detect-secrets
+```

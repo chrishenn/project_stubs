@@ -9,4 +9,3 @@ backend = { name = "pixi-build-rattler-build", version = "*" }
 [dependencies]
 #pixi_cuda = { path = "." }
 csrc = { path = "." }
-

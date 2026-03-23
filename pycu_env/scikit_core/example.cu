@@ -125,6 +125,3 @@ std::vector<torch::Tensor> example_call(
     // some c++ primitives appear to be supported.
     return {input, output};
 }
-
-
-

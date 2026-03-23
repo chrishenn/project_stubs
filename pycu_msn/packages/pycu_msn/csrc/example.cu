@@ -67,4 +67,3 @@ std::vector<torch::Tensor> myfn_cu(
 TORCH_LIBRARY_IMPL(pycu_msn, CUDA, m) {
     m.impl("myfn", &pycu_msn::myfn_cu);
 }
-

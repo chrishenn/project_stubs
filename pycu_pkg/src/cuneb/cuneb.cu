@@ -233,6 +233,3 @@ __host__ std::vector<torch::Tensor> call(
     edges = edges.narrow(0, 0, edge_count.item<int>());
     return {edges};
 }
-
-
-

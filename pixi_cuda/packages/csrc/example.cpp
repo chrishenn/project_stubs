@@ -19,4 +19,3 @@ TORCH_LIBRARY_IMPL(ns, CPU, m) {
 TORCH_LIBRARY(ns, m) {
     m.def("myfn(Tensor input) -> Tensor[]");
 }
-
