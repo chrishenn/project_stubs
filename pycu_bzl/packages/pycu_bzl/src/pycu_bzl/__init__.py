@@ -7,7 +7,6 @@ from pathlib import Path
 torch.ops.load_library(one(Path(__file__).parent.glob("_C*.so")))
 """filename "_C.<python><ver><platform>.so" is hardcoded in CMakeLists.txt"""
 
-
 ext_ns = getattr(torch.ops, Path(__file__).parent.name)
 """The extension's namespace is bound onto torch.ops.<name>, so multiple extensions must not use the same namespace name
 I've manually set the extension to have the same name as the package"""

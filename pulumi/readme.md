@@ -10,30 +10,30 @@ A minimal Pulumi template for provisioning AWS infrastructure using TypeScript. 
 
 ## Getting Started
 
-1.  Initialize a new Pulumi project:
+1. Initialize a new Pulumi project:
 
-    ```bash
-    pulumi new aws-typescript
-    ```
+   ```bash
+   pulumi new aws-typescript
+   ```
 
-    Follow the prompts to set your:
-    - Project name
-    - Project description
-    - AWS region (defaults to `us-east-1`)
+   Follow the prompts to set your:
+   - Project name
+   - Project description
+   - AWS region (defaults to `us-east-1`)
 
-2.  Preview and deploy your infrastructure:
+2. Preview and deploy your infrastructure:
 
-    ```bash
-    pulumi preview
-    pulumi up
-    ```
+   ```bash
+   pulumi preview
+   pulumi up
+   ```
 
-3.  When you're finished, tear down your stack:
+3. When you're finished, tear down your stack:
 
-    ```bash
-    pulumi destroy
-    pulumi stack rm
-    ```
+   ```bash
+   pulumi destroy
+   pulumi stack rm
+   ```
 
 ## Project Layout
 

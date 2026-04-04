@@ -3,10 +3,10 @@ from torch import Tensor
 
 import importlib.util
 
-
 # install the .so as if it were a python package named "csrc", and use the package name to find the .so file
 torch.ops.load_library(importlib.util.find_spec("csrc").origin)
 ext_ns = getattr(torch.ops, "ns")
+
 
 # install the .so directly into the pixi_cuda src files, and find by name
 # torch.ops.load_library(str(next(iter(Path(__file__).parent.glob("*.so")))))

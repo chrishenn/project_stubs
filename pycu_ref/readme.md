@@ -1,6 +1,7 @@
-# pycu_ref
+# python + cuda (deprecated tools: reference only)
 
-An example repo to demonstrate a working stack of tools to build a python package that includes a torch-cpp-cuda extension.
+An example repo to demonstrate a deprecated (NOT recommended) and working stack of tools to build a python package that
+includes a torch-cpp-cuda extension.
 
 This repo explores environment-management tools:
 
@@ -363,8 +364,8 @@ cudnn.priority = 3
 
 [options]
 systems = [
-  "aarch64-linux",
-  "x86_64-linux",
+    "aarch64-linux",
+    "x86_64-linux",
 ]
 # cuda-detection = false
 allow.unfree = true

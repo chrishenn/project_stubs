@@ -5,7 +5,6 @@ from pycu_zig import hello
 def test_basic():
     print(hello())
 
-
 # def test_cpu() -> None:
 #     # the cpu implementation adds one to the input
 #     cpu: t.Tensor = t.randint(100000, size=[100], dtype=t.int)

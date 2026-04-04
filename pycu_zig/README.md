@@ -1,4 +1,4 @@
-# pycu_zig
+# python + cuda + zig (experimental)
 
 ## Step 1: build cuda kernels and torch cpp with zig
 

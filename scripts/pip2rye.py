@@ -4,7 +4,6 @@ import sh
 from cytoolz import curry
 from cytoolz.curried import filter, map
 
-
 quirks = {"flask-accepts": "flask-accepts @ git+https://github.com/repo/hash"}
 
 

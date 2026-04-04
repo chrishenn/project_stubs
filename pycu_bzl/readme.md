@@ -1,4 +1,4 @@
-# pycu_bzl
+# python + cuda + bazel
 
 Bazel is not into just building a binary and then installing it somewhere. Bazel makes it near-impossible
 to use it as part of another builder or packaging process.

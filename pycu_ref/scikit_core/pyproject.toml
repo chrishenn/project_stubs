@@ -27,7 +27,7 @@ cache-keys = [{ file = "pyproject.toml" }, { file = "src/pycu_ref/*" }, { git = 
 cmake.source-dir = "src/pycu_ref/csrc"
 cmake.version = ">=3.30"
 cmake.args = []
-cmake.define = {}
+cmake.define = { }
 cmake.build-type = "Release"
 ninja.version = ">=1.12"
 ninja.make-fallback = false

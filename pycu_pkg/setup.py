@@ -9,7 +9,6 @@ from setuptools.command.install import install
 
 from distutils.file_util import copy_file
 
-
 ## Hardcode project names here
 # Make sure they match the names in the pkg/module/.env file
 # We can't load these names from the .env file, - `Build` installs the modules in
@@ -20,16 +19,14 @@ MOD_PATH = "src/cuneb/"
 
 
 def get_readme():
-    with open("README.md") as f:
+    with open("readme.md") as f:
         return f.read()
 
 
 def check_for_cmake():
     CMAKE_EXE = os.environ.get("CMAKE_EXE", shutil.which("cmake"))
     if not CMAKE_EXE:
-        print(
-            "cmake executable not found. Set CMAKE_EXE environment or update your path"
-        )
+        print("cmake executable not found. Set CMAKE_EXE environment or update your path")
         sys.exit(1)
 
     return CMAKE_EXE
@@ -62,10 +59,7 @@ class CMakeBuildExt(build_ext):
             CMAKE_EXE = check_for_cmake()
             register_env_names()
 
-            output_dir = os.path.join(
-                os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name))),
-                ext.name,
-            )
+            output_dir = os.path.join(os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name))), ext.name)
             # output_dir = os.path.abspath( os.path.dirname(self.get_ext_fullpath(ext.name)) )
 
             build_type = "Debug" if self.debug else "Release"
@@ -75,24 +69,14 @@ class CMakeBuildExt(build_ext):
                 "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=" + output_dir,
                 "-DCMAKE_BUILD_TYPE=" + build_type,
             ]
-            cmake_args.extend(
-                [
-                    x
-                    for x in os.environ.get("CMAKE_COMMON_VARIABLES", "").split(" ")
-                    if x
-                ]
-            )
+            cmake_args.extend([x for x in os.environ.get("CMAKE_COMMON_VARIABLES", "").split(" ") if x])
 
             env = os.environ.copy()
             if not os.path.exists(self.build_temp):
                 os.makedirs(self.build_temp)
 
             subprocess.check_call(cmake_args, cwd=self.build_temp, env=env)
-            subprocess.check_call(
-                ["make", "-j" + str(os.cpu_count() // 2), ext.name],
-                cwd=self.build_temp,
-                env=env,
-            )
+            subprocess.check_call(["make", "-j" + str(os.cpu_count() // 2), ext.name], cwd=self.build_temp, env=env)
             print()
         else:
             super().build_extension(ext)
@@ -105,16 +89,11 @@ class CMakeBuildExt(build_ext):
             fullname = self.get_ext_fullname(ext.name)
             filename = self.get_ext_filename(fullname)
 
-            output_dir = os.path.join(
-                os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name))),
-                MOD_PATH,
-            )
+            output_dir = os.path.join(os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name))), MOD_PATH)
             dest_filename = os.path.join(output_dir, os.path.basename(filename))
             src_filename = os.path.join(self.build_lib, fullname, filename)
 
-            copy_file(
-                src_filename, dest_filename, verbose=self.verbose, dry_run=self.dry_run
-            )
+            copy_file(src_filename, dest_filename, verbose=self.verbose, dry_run=self.dry_run)
 
 
 class CustomInstall(install):
@@ -135,13 +114,8 @@ setup(
     packages=[MOD_NAME],
     package_dir={MOD_NAME: MOD_PATH},
     ext_modules=[CMakeExtension(MOD_NAME, sourcedir=MOD_PATH)],
-    cmdclass={
-        "install": CustomInstall,
-        "build_ext": CMakeBuildExt,
-    },
-    package_data={
-        MOD_NAME: [".env", "CMakeLists.txt", "*.cpp", "*.cu", "*.cuh", "*.h"]
-    },
+    cmdclass={"install": CustomInstall, "build_ext": CMakeBuildExt},
+    package_data={MOD_NAME: [".env", "CMakeLists.txt", "*.cpp", "*.cu", "*.cuh", "*.h"]},
     setup_requires=[
         "setuptools>=42",
         "wheel",
@@ -149,12 +123,7 @@ setup(
         "python-dotenv",
         'importlib-metadata; python_version >= "3.9"',
     ],
-    install_requires=[
-        "torch>=1.8.2",
-        "python-dotenv",
-        'importlib-metadata; python_version >= "3.9"',
-        "nose",
-    ],
+    install_requires=["torch>=1.8.2", "python-dotenv", 'importlib-metadata; python_version >= "3.9"', "nose"],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Environment :: GPU :: NVIDIA CUDA",

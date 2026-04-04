@@ -2,24 +2,24 @@
 
 # clean
 clean = [
-    {shell = "pyclean . -d"},
-    {shell = "pyclean .venv -d"},
-    {shell = "ruff clean"},
+    { shell = "pyclean . -d" },
+    { shell = "pyclean .venv -d" },
+    { shell = "ruff clean" },
 ]
 deepclean = [
     "clean",
-    {shell = "pyclean ${HOME}/.cache -d"},
+    { shell = "pyclean ${HOME}/.cache -d" },
 ]
 
 # clean
 pyclean = [
-    {shell = "pyclean . -d"},
-    {shell = "pyclean .venv -d"},
-    {shell = "pyclean ${HOME}/.cache -d"},
-    {shell = "ruff clean"},
-    {shell = "uv cache clean"},
-    {shell = "rm -rf /home/chris/.cache"},
-    {shell = "pytest --cache-clear"},
+    { shell = "pyclean . -d" },
+    { shell = "pyclean .venv -d" },
+    { shell = "pyclean ${HOME}/.cache -d" },
+    { shell = "ruff clean" },
+    { shell = "uv cache clean" },
+    { shell = "rm -rf /home/chris/.cache" },
+    { shell = "pytest --cache-clear" },
 ]
 cclean.shell = "rm -rf packages/read_row/src/read_row/csrc/build"
 uvclean.shell = "rm -rf .venv"
@@ -34,11 +34,11 @@ doctest.shell = "pytest --doctest-modules"
 
 # lint
 lint.sequence = [
-    {shell = "ruff check --fix"},
-    {shell = "ruff format"},
+    { shell = "ruff check --fix" },
+    { shell = "ruff format" },
 ]
 lint.ignore_fail = true
-checklint = [{shell = "ruff check"}, {shell = "ruff format --check"}]
+checklint = [{ shell = "ruff check" }, { shell = "ruff format --check" }]
 unsafe.shell = "ruff check --fix --unsafe-fixes"
 
 # type checking

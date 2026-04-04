@@ -19,9 +19,7 @@ def striparchiveroot(out_path: Path):
     extracted[0].rmdir()
 
 
-def extract_zip(
-    fn: str, outpath: str, strip_root: bool = True, overwrite: bool = False
-):
+def extract_zip(fn: str, outpath: str, strip_root: bool = True, overwrite: bool = False):
     out_path = Path(outpath).expanduser().resolve()
     if out_path.is_dir() and not overwrite:
         return

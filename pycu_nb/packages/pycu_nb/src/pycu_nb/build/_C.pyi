@@ -1,5 +1,10 @@
 from torch import tensor
 
+
 def myfn_cpu(input: tensor) -> tensor: ...
+
+
 def myfn_gpu(input: tensor) -> tensor: ...
+
+
 def inspect(input: tensor) -> None: ...

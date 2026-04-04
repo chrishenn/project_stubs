@@ -1,4 +1,4 @@
-# simple_mypyc
+# mypyc
 
 An example repo to demonstrate a simple project that compiles using mypyc.
 

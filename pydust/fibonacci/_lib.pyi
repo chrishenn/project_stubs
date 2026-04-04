@@ -11,6 +11,7 @@ class Fibonacci:
 
     def __init__(self, first_n, /):
         pass
+
     def __iter__(self, /):
         """
         Implement iter(self).
@@ -24,6 +25,7 @@ class FibonacciIterator:
 
     def __init__(self, i, ith, next, stop, /):
         pass
+
     def __next__(self, /):
         """
         Implement next(self).

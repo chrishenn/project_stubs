@@ -3,7 +3,7 @@ name = "pycu_msn"
 version = "0.0.1"
 description = ""
 readme = "README.md"
-authors = [{name = 'Chris Henn', email = 'chenn@alum.mit.edu'}]
+authors = [{ name = 'Chris Henn', email = 'chenn@alum.mit.edu' }]
 
 requires-python = ">=3.13"
 dependencies = [
@@ -62,7 +62,7 @@ url = "https://download.pytorch.org/whl/cu126"
 explicit = true
 
 [tool.uv]
-cache-keys = [{file = "csrc/*"}]
+cache-keys = [{ file = "csrc/*" }]
 
 [build-system]
 requires = ["hatchling", "hatch-build-scripts"]

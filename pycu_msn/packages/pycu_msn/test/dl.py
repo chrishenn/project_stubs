@@ -13,12 +13,7 @@ import argparse
 import socket
 
 
-def url_retrieve(
-    url: str,
-    outfile: Path,
-    filehash: tuple[str, str] = None,
-    overwrite: bool = False,
-):
+def url_retrieve(url: str, outfile: Path, filehash: tuple[str, str] = None, overwrite: bool = False):
     """
     Parameters
     ----------
@@ -40,9 +35,7 @@ def url_retrieve(
         try:
             urllib.request.urlretrieve(url, str(outfile))
         except (socket.gaierror, urllib.error.URLError) as err:
-            raise SystemExit(
-                "ConnectionError: could not download {} due to {}".format(url, err)
-            )
+            raise SystemExit("ConnectionError: could not download {} due to {}".format(url, err))
 
     if filehash:
         if not file_checksum(outfile, filehash[0], filehash[1]):

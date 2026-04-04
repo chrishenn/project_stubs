@@ -1,4 +1,4 @@
-# testpy
+# python
 
 A minimal python test project with uv, cuda, and environment tooling.
 

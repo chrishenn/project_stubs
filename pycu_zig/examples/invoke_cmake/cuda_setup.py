@@ -15,16 +15,10 @@ def get_all_cuda_devices():
     try:
         # Query GPUs for index, name, and compute capability in CSV format.
         # (Note: the 'compute_cap' query field is supported in newer driver versions.)
-        cmd = [
-            "nvidia-smi",
-            "--query-gpu=index,name,compute_cap",
-            "--format=csv,noheader",
-        ]
+        cmd = ["nvidia-smi", "--query-gpu=index,name,compute_cap", "--format=csv,noheader"]
         output = subprocess.check_output(cmd, universal_newlines=True)
     except FileNotFoundError:
-        print(
-            "Error: nvidia-smi not found. Make sure NVIDIA drivers are installed and nvidia-smi is in your PATH."
-        )
+        print("Error: nvidia-smi not found. Make sure NVIDIA drivers are installed and nvidia-smi is in your PATH.")
         sys.exit(1)
     except subprocess.CalledProcessError as e:
         print("Error: nvidia-smi returned an error:", e)
@@ -60,17 +54,13 @@ def get_cuda_compute() -> str:
     elif len(gpu_list) == 1:
         gpu = gpu_list[0]
         print("Only one GPU found:")
-        print(
-            f"  GPU {gpu['index']}: {gpu['name']} (Compute Capability: {gpu['compute_cap']})"
-        )
+        print(f"  GPU {gpu['index']}: {gpu['name']} (Compute Capability: {gpu['compute_cap']})")
         return gpu["compute_cap"]
     else:
         g0 = gpu_list[0]
         for g1 in gpu_list[1:]:
             if g0["compute_cap"] != g1["compute_cap"]:
-                print(
-                    "Incompatible compute types found. Pass gpu-arch flag to zig build (ex. -Dcuda_arch=sm_89)"
-                )
+                print("Incompatible compute types found. Pass gpu-arch flag to zig build (ex. -Dcuda_arch=sm_89)")
                 sys.exit(1)
 
         return g0["compute_cap"]

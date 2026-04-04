@@ -2,23 +2,23 @@
 
 # clean
 clean = [
-    {shell = "pyclean . -d"},
-    {shell = "pyclean .venv -d"},
-    {shell = "ruff clean"},
+    { shell = "pyclean . -d" },
+    { shell = "pyclean .venv -d" },
+    { shell = "ruff clean" },
 ]
 deepclean = [
     "clean",
-    {shell = "pyclean ${HOME}/.cache -d"},
+    { shell = "pyclean ${HOME}/.cache -d" },
 ]
 
 # clean
 pyclean = [
-    {shell = "pyclean . -d"},
-    {shell = "pyclean .venv -d"},
-    {shell = "pyclean ${HOME}/.cache -d"},
-    {shell = "ruff clean"},
-    {shell = "uv cache clean"},
-    {shell = "rm -rf /home/chris/.cache"},
+    { shell = "pyclean . -d" },
+    { shell = "pyclean .venv -d" },
+    { shell = "pyclean ${HOME}/.cache -d" },
+    { shell = "ruff clean" },
+    { shell = "uv cache clean" },
+    { shell = "rm -rf /home/chris/.cache" },
 ]
 cclean.shell = "rm -rf packages/read_row/src/read_row/csrc/build"
 uvclean.shell = "rm -rf .venv"

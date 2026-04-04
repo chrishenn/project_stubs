@@ -1,4 +1,4 @@
-# pycu_bzl2
+# python + cuda + bazel 2
 
 another crack at it
 couldn't get it to build, even cpu-only. wah-wah

@@ -1,7 +1,5 @@
-alias l := lint
+alias f := fix
 alias c := check
-
-lint: fix
 
 check:
     hk check --all

@@ -57,7 +57,7 @@ url = "https://download.pytorch.org/whl/cu126"
 explicit = true
 
 [tool.uv]
-cache-keys = [{file = "csrc/*"}, {file = "build.zig"}, {file = "csrc/build.zig"}]
+cache-keys = [{ file = "csrc/*" }, { file = "build.zig" }, { file = "csrc/build.zig" }]
 
 [tool.pytest.ini_options]
 
@@ -71,10 +71,10 @@ build-backend = "hatchling.build"
 
 [[tool.hatch.build.targets.wheel.hooks.build-scripts.scripts]]
 commands = [
-#    "python build.py",
+    #    "python build.py",
 ]
 artifacts = [
-#    "_C*.so",
+    #    "_C*.so",
 ]
 out_dir = "src/pycu_zig"
 

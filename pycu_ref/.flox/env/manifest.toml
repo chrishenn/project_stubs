@@ -6,15 +6,15 @@ gum = { pkg-path = "gum", pkg-group = "shell" }
 coreutils = { pkg-path = "coreutils", pkg-group = "shell" }
 
 # system build deps
-uv =    { pkg-path = "uv" }
-gcc =   { pkg-path = "gcc",   version = "13"}
+uv = { pkg-path = "uv" }
+gcc = { pkg-path = "gcc", version = "13" }
 cmake = { pkg-path = "cmake" }
 ninja = { pkg-path = "ninja" }
 
-cudatoolkit = { pkg-path = "cudaPackages.cudatoolkit", version = "12.4", priority = 0}
-nccl =        { pkg-path = "cudaPackages.nccl" }
-cudart =      { pkg-path = "cudaPackages.cuda_cudart", priority = 4 }
-cudnn =       { pkg-path = "cudaPackages.cudnn",       priority = 3 }
+cudatoolkit = { pkg-path = "cudaPackages.cudatoolkit", version = "12.4", priority = 0 }
+nccl = { pkg-path = "cudaPackages.nccl" }
+cudart = { pkg-path = "cudaPackages.cuda_cudart", priority = 4 }
+cudnn = { pkg-path = "cudaPackages.cudnn", priority = 3 }
 
 
 [vars]
@@ -110,8 +110,8 @@ source "$FLOX_PYTHON_UV_VENV_PATH/bin/activate"
 
 [options]
 systems = [
-  "aarch64-linux",
-  "x86_64-linux",
+    "aarch64-linux",
+    "x86_64-linux",
 ]
 #cuda-detection = false
 allow.unfree = true

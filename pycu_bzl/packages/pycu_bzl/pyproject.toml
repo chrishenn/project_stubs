@@ -3,7 +3,7 @@ name = "pycu_bzl"
 version = "0.0.1"
 description = ""
 readme = "README.md"
-authors = [{name = 'Chris Henn', email = 'chenn@alum.mit.edu'}]
+authors = [{ name = 'Chris Henn', email = 'chenn@alum.mit.edu' }]
 
 requires-python = ">=3.13"
 dependencies = [
@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [tool.uv]
-cache-keys = [{file = "src/pycu_bzl/csrc/**/*"}]
+cache-keys = [{ file = "src/pycu_bzl/csrc/**/*" }]
 
 [dependency-groups]
 dev = [
@@ -28,8 +28,8 @@ url = "https://download.pytorch.org/whl/cu124"
 explicit = true
 
 [tool.uv.sources]
-torch = [{ index = "pytorch-cu124", marker = "platform_system != 'Darwin'"}]
-torchvision = [{ index = "pytorch-cu124", marker = "platform_system != 'Darwin'"}]
+torch = [{ index = "pytorch-cu124", marker = "platform_system != 'Darwin'" }]
+torchvision = [{ index = "pytorch-cu124", marker = "platform_system != 'Darwin'" }]
 
 [build-system]
 requires = ["hatchling", "hatch-build-scripts", "pybind11"]

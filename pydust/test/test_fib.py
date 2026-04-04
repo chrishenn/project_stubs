@@ -2,11 +2,7 @@ from fibonacci import _lib
 
 
 def test_fibonacci():
-    impls = [
-        _lib.nth_fibonacci_iterative,
-        _lib.nth_fibonacci_recursive,
-        _lib.nth_fibonacci_recursive_tail,
-    ]
+    impls = [_lib.nth_fibonacci_iterative, _lib.nth_fibonacci_recursive, _lib.nth_fibonacci_recursive_tail]
     for impl in impls:
         assert impl(9) == 34
 

@@ -20,7 +20,7 @@ requires = ["hatchling"]
 [tool.hatch.build.targets.wheel]
 packages = ["src/pixi_cuda"]
 artifacts = [
-  "*.so",
+    "*.so",
 ]
 exclude = [
     "__pycache__/",

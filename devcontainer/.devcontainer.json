@@ -1,11 +1,10 @@
 {
   "name": "GPU Dev Container",
-
   "build": {
     "dockerfile": "Dockerfile"
   },
-
-  "features": { "ghcr.io/jsburckhardt/devcontainer-features/uv:1": {} },
-
+  "features": {
+    "ghcr.io/jsburckhardt/devcontainer-features/uv:1": {}
+  },
   "runArgs": ["--gpus=all"]
 }

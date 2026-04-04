@@ -1,7 +1,6 @@
-# cpptest
+# cpp
 
 build cpp binary to c++26 standard with clang@21.1
-note: no assembly view for .cu files?
 
 - mise
   - provides pixi
@@ -14,15 +13,7 @@ note: no assembly view for .cu files?
 
 - IDE
   - can source the same build env file
-
----
-
-pixi note
-
-there's a race condition between the cuda and clang packages. also possibly the gcc package.
-see pixi.toml.
-
----
+  - can trivially show assembly in editor for a built binary
 
 ```bash
 # build manually
@@ -33,8 +24,8 @@ cmake --build build
 mise build
 
 # run manually
-./build/cuda
+./build/cpptest
 
 # run with mise task
-mise cuda
+mise cpptest
 ```

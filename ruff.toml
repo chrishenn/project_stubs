@@ -34,7 +34,7 @@ respect-gitignore = true
 output-format = "concise"
 line-length = 120
 indent-width = 4
-target-version = "py313"
+target-version = "py314"
 
 
 [lint]
@@ -46,33 +46,29 @@ select = ["ALL"]
 ignore = [
     # annotations
     "ANN001", "ANN002", "ANN003", "ANN401",
-
     # docstrings
     "D",
-
     # to-do's
-    "TD003",    # require to-do issue links
-    "FIX002",   # allow to-do's
+    "TD003", # require to-do issue links
+    "FIX002", # allow to-do's
 
     # prints, names, crappy perf
     "T201", "N", "PERF",
-
     # do not enable: conflicts with ruff formatter
     "W191", "E111", "E114", "E117", "D206", "D300", "Q000", "Q001", "Q002", "Q003", "COM812", "COM819", "ISC001", "ISC002",
-
     # do not enable
-    "G004",     # flake8-logging-format (buggy)
-    "A004",     # Import <pkg> is shadowing a Python builtin (useful for map, filter, etc)
-    "C90",      # mccabe name complexity (odd)
-    "F811",     # Redefinition of unused {func-name} (conflicts with multimethod)
-    "PIE796",   # Enum contains duplicate value (advanced enum use)
-    "TRY",      # tryceratops (bad)
-    "ERA",      # eradicate (buggy)
-    "EXE003",   # shebang should contain python (incompatible with uv)
-    "S101",     # raw assert (used in pytests)
-    "S110",     # try-except-pass should log
-    "N805",     # First argument of a method should be named `self` (conflicts with decorated type)
-    "TC003",    # move import into type-checking block (breaks pydantic runtime type-checking)
+    "G004", # flake8-logging-format (buggy)
+    "A004", # Import <pkg> is shadowing a Python builtin (useful for map, filter, etc)
+    "C90", # mccabe name complexity (odd)
+    "F811", # Redefinition of unused {func-name} (conflicts with multimethod)
+    "PIE796", # Enum contains duplicate value (advanced enum use)
+    "TRY", # tryceratops (bad)
+    "ERA", # eradicate (buggy)
+    "EXE003", # shebang should contain python (incompatible with uv)
+    "S101", # raw assert (used in pytests)
+    "S110", # try-except-pass should log
+    "N805", # First argument of a method should be named `self` (conflicts with decorated type)
+    "TC003", # move import into type-checking block (breaks pydantic runtime type-checking)
 ]
 
 [lint.per-file-ignores]

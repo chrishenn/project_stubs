@@ -3,7 +3,6 @@ from torch import Tensor
 
 import importlib.util
 
-
 torch.ops.load_library(importlib.util.find_spec("pixi_cuda_c").origin)
 ext_ns = getattr(torch.ops, "ns")
 

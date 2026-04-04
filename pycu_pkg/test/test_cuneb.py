@@ -22,13 +22,7 @@ def get_objects(sizes):
 
     geom = t.cat([gridy, gridx, zeros, angles, ones, zeros], 1)
 
-    imgid = (
-        t.arange(b_size)
-        .unsqueeze(1)
-        .unsqueeze(2)
-        .unsqueeze(3)
-        .repeat(1, 1, y_size, x_size)
-    )
+    imgid = t.arange(b_size).unsqueeze(1).unsqueeze(2).unsqueeze(3).repeat(1, 1, y_size, x_size)
 
     geom = geom.permute([0, 2, 3, 1])
     imgid = imgid.permute([0, 2, 3, 1])

@@ -5,14 +5,11 @@ from torch import Tensor
 # from pycu_bzl import myfn
 
 
-torch.ops.load_library(
-    "/home/chris/Projects/pycu_bzl/packages/pycu_bzl/bazel-bin/_C.so"
-)
+torch.ops.load_library("/home/chris/Projects/pycu_bzl/packages/pycu_bzl/bazel-bin/_C.so")
 # torch.ops.load_library("/home/chris/Projects/pycu_bzl/packages/pycu_bzl/src/pycu_bzl/_C.so")
 
 # torch.ops.load_library(one(Path(__file__).parent.glob("_C*.so")))
 """filename "_C.<python><ver><platform>.so" is hardcoded in CMakeLists.txt"""
-
 
 ext_ns = getattr(torch.ops, "pycu_skit")
 """The extension's namespace is bound onto torch.ops.<name>, so multiple extensions must not use the same namespace name

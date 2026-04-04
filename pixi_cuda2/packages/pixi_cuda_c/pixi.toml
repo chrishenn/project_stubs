@@ -22,7 +22,7 @@ python = ">=3.11"
 pytorch-gpu = "*"
 nanobind = "*"
 
-cuda-version =">=13.2"
+cuda-version = ">=13.2"
 cuda = ">=13.2"
 cusparselt-dev = "*"
 libcusparse-dev = "*"

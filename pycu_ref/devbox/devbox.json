@@ -30,7 +30,6 @@
   },
   "shell": {
     "init_hook": ". $VENV_DIR/bin/activate && export LD_LIBRARY_PATH=./.devbox/nix/profile/default/lib",
-
     "scripts": {
       "test": ["echo 'test done'"]
     }

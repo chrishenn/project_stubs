@@ -7,6 +7,7 @@ import importlib.util
 torch.ops.load_library(importlib.util.find_spec("csrc").origin)
 ext_ns = getattr(torch.ops, "ns")
 
+
 # install the .so directly into the pixi_cuda src files, and find by name
 # torch.ops.load_library(str(next(iter(Path(__file__).parent.glob("*.so")))))
 # ext_ns = getattr(torch.ops, "ns")

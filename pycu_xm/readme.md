@@ -1,4 +1,4 @@
-# pycu_xm
+# python + cuda + xmake
 
 An example project to build a torch-cpp-cuda-python extension with this stack of tools:
 
