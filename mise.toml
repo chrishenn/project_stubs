@@ -14,5 +14,3 @@ trufflehog = "latest"
 
 [env]
 HK_MISE = 1
-HK_LIBGIT2 = 0
-MISE_NPM_BUN = 1
